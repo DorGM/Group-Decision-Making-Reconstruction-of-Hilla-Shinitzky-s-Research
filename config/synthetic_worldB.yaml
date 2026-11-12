@@ -1,0 +1,107 @@
+# SYNTHETIC — not a reproduction
+# Parameters of the synthetic World-B stand-in (plan §2.3, OQ43).
+# Written by scripts/run_b3_synthetic.py --calibrate; do not edit by hand.
+# Every value below is INVENTED: no paper supports it. The values tagged
+# INVENTED-CALIBRATED were picked by a seeded grid search on the four rule
+# counts of TH Fig 5.3 (T24) and on nothing else. RP/AP results are not
+# calibration targets. To be replaced by the real MTurk data.
+#
+# Note on the generator seed: the calibration was done on the single data set
+# drawn with generator seed 0. With the same parameters and other generator
+# seeds the counts move well outside ±2 (generator seeds 1–8, 10 partition
+# seeds each: MR 25–35, WC 26–34, SP 31–37, HAC 16–21; 2 of the 8 seeds are
+# within ±2 on all four rules). The agreement holds for generator seed 0 only:
+# it is a property of this one data set, not of the model.
+#
+# Also INVENTED, fixed in cdm/data/worldB/synthetic.py and not listed as
+# parameters below: the clip of the mean confidence to [0.05, 0.95]
+# (CONF_CLIP) [INVENTED]; the uniform draw of the correct option and of the
+# lure option of each task (generate_task, 'layout') [INVENTED].
+marker: "SYNTHETIC — not a reproduction"
+plan: "§2.3; §8 OQ43"
+seed: 0
+parameters:
+  lure_share_mean:
+    value: 0.4
+    tag: INVENTED-CALIBRATED
+    grid: [0.3, 0.4, 0.5, 0.6, 0.7]
+    block: votes
+    what: "mean share of the wrong votes that go to the lure answer (lambda_t is drawn per task around it)"
+  lure_share_concentration:
+    value: 10.0
+    tag: INVENTED
+    block: votes
+    what: "concentration (a + b) of the Beta that lambda_t is drawn from"
+  distractor_alpha:
+    value: 2.0
+    tag: INVENTED-CALIBRATED
+    grid: [0.5, 1.0, 2.0, 4.0]
+    block: votes
+    what: "Dirichlet alpha of the split of the remaining wrong votes over the m - 2 other wrong options"
+  conf_base:
+    value: 0.6
+    tag: INVENTED
+    block: conf
+    what: "mean confidence of a response whose answer nobody else chose"
+  conf_popularity_slope:
+    value: 0.2
+    tag: INVENTED-CALIBRATED
+    grid: [0.0, 0.1, 0.2, 0.3, 0.4]
+    block: conf
+    what: "rise of the mean confidence with the vote share of the response's answer (consensuality, Koriat 2008)"
+  conf_solver_bonus:
+    value: 0.0
+    tag: INVENTED-CALIBRATED
+    grid: [0.0, 0.02, 0.05, 0.08]
+    block: conf
+    what: "extra mean confidence of a solver (plan: 'a small solver bonus')"
+  conf_concentration:
+    value: 16.0
+    tag: INVENTED-CALIBRATED
+    grid: [4.0, 8.0, 16.0]
+    block: conf
+    what: "concentration (a + b) of the Beta the confidence is drawn from"
+  ps_own_shift:
+    value: 0.3
+    tag: INVENTED-CALIBRATED
+    grid: [0.1, 0.2, 0.3, 0.4]
+    block: ps
+    what: "weight moved from the true shares to the response's own answer (false consensus)"
+  ps_solver_lure_shift:
+    value: 0.5
+    tag: INVENTED-CALIBRATED
+    grid: [0.0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]
+    block: ps
+    what: "weight a solver moves from the true shares to the lure (solvers anticipate the lure; Prelec 2017)"
+  ps_concentration:
+    value: 20.0
+    tag: INVENTED-CALIBRATED
+    grid: [5.0, 10.0, 20.0, 40.0]
+    block: ps
+    what: "Dirichlet concentration of a prediction around its mean vector (larger = less noise)"
+  ps_onehot_rate:
+    value: 0.05
+    tag: INVENTED
+    block: ps
+    what: "share of responses that predict 100% for their own answer (such a response exists: TH Table A.4, PSv = 1; the rate is invented)"
+  ps_floor:
+    value: 1.0e-06
+    tag: INVENTED
+    block: ps
+    what: "added to every Dirichlet alpha so that none is 0 (numerical)"
+evidence:
+  tasks: "TH Table 4.1 p.54 = MCF Table 3: 22 tasks, |A_P|, |R_P|, S(a*) [EVIDENCE]"
+  solvers_per_task: "round(S(a*) * |R_P|), met exactly [EVIDENCE to the printed 2 d.p., plan §2.3; 4 tasks ambiguous, decision B3-2]"
+  partition: "disjoint [EVIDENCE, TH p.53, p.55]; k = floor(|R_P| / 30) -> 77 [INFERRED, strong]"
+  ps_sum_to_one: "[INFERRED] from TH Table A.4 (PChiSq = .682)"
+  confidence_scale: "continuous in [0, 1] [INVENTED]; the scale is not reported (TH p.53)"
+calibration:
+  method: "seeded grid search, block by block: votes on MR, confidence on WC and HAC, predictions on SP"
+  targets_tag: "rates EVIDENCE (TH Fig 5.3); counts = the only integers of 77 that round to them"
+  targets: {MR: 34, WC: 34, SP: 33, HAC: 22}
+  partition_seeds: [0, 29]
+  n_partition_seeds: 30
+  mean_counts_reached: {MR: 33.53333333333333, WC: 34.3, SP: 33.0, HAC: 22.733333333333334}
+  loss: 0.845555555555557
+  combinations_tried: {votes: 20, conf: 60, ps: 112}
+  not_calibration_targets: "RP/AP outcomes T23, T26-T29 (plan §2.3)"

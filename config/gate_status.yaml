@@ -1,0 +1,36 @@
+# Machine-readable record of the rule-baseline check ("rule gate" in the
+# code; plan §2.1.1 Step D5, step A10; docs/RULE_BASELINE_CHECK.md): which
+# frozen World-A builds may be used to train or evaluate a model.
+# Read by cdm.eval.gate_guard.require_gate, which every driver script in
+# scripts/ calls before it loads a build. A build that is not listed here
+# with status `passed` or `waived` is refused.
+#
+#   status       : passed (every rule-baseline count equals the thesis-reported
+#                  count) | waived (some counts differ; the project owner
+#                  authorised proceeding with the differences documented).
+#   cases_sha256 : SHA-256 of the build's worldA_cases.jsonl at the time of
+#                  the decision. The build is frozen: a build whose cases
+#                  file has another hash is refused.
+#   reference    : the record of the decision, relative to the repository root.
+#
+# On every build some counts differ (docs/IMPLEMENTATION_DECISIONS.md G1). The two
+# entries below record the authorisation of 2026-11-11 (plan amendment AM17).
+builds:
+  waiver_main:
+    status: waived
+    role: primary
+    date: "2026-11-11"
+    decided_by: project owner
+    decision: 'Proceed with AMP/DAP on this build although some rule-baseline counts differ from the thesis-reported counts by a few cases; the differences are documented'
+    reference: docs/RULE_BASELINE_CHECK.md
+    amendment: AM17
+    cases_sha256: c237695153557e02862adf8f823098f849831a98ed6e737595b9d6950794635c
+  waiver_politics_alt:
+    status: waived
+    role: sensitivity
+    date: "2026-11-11"
+    decided_by: project owner
+    decision: 'Same decision; sensitivity build of waiver_main'
+    reference: docs/RULE_BASELINE_CHECK.md
+    amendment: AM17
+    cases_sha256: 1f9ef3e0fa430db03f32318e18da66914208276e7385ca5be4f190d582eee9cf

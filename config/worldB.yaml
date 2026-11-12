@@ -1,0 +1,21 @@
+# World-B data source (plan §2.3: the synthetic stand-in and the real file
+# use the same loader schema and are "chosen by a config switch").
+# Read by cdm.data.worldB.loader.load_from_config.
+#
+# source: synthetic -> cdm.data.worldB.synthetic.generate()
+#                      (SYNTHETIC — not a reproduction; parameters in
+#                      config/synthetic_worldB.yaml)
+# source: real      -> cdm.data.worldB.loader.load_world_b(...) on the two
+#                      files named below. UNTESTED ON REAL DATA: the MTurk
+#                      file is not part of this repository and its format is assumed
+#                      (docs/IMPLEMENTATION_DECISIONS.md, World B, L1-L12).
+source: synthetic
+real:
+  status: "UNTESTED ON REAL DATA - the file is not part of this repository"
+  responses_file: null     # path of the per-response CSV
+  tasks_file: null         # path of the per-task CSV (answers, correct answer)
+  confidence_range: null   # [low, high] of the raw confidence scale; NOT reported in the papers (TH p.53)
+  ps_scale: null           # 100 = predictions are percentages, 1 = shares
+  incomplete: raise        # raise | drop (no rule in the plan for World B)
+# The OQ39 policy (predictions that do not sum to 100%) is read from
+# config/defaults.yaml (OQ39); the partition seeds from OQ25 (n_seeds: 30).

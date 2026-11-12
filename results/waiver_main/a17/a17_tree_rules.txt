@@ -1,0 +1,170 @@
+A17 classic meta-learning: rules of the decision trees, build waiver_main
+Each tree is fitted on ALL cases (the LOO trees differ from it by one case).
+Coding: f_<method> = 1 when the method chose the first answer (a1) of the case, 0 when it chose the other (a2); class 1 = the correct answer is a1.
+weights = [cases with a* = a2, cases with a* = a1] in the leaf.
+
+=== Row 1: f_MR, f_HAC, f_WC, f_SP, f_DA  (depth 4, 11 leaves; LOO success 869/1209) ===
+
+Answer patterns that occur:
+f_MR    f_HAC   f_WC    f_SP    f_DA    cases  a*=a1  tree returns  (= the answer of)
+a1      a1      a1      a1      a2        538    418  a1            MR, HAC, WC, SP
+a1      a1      a1      a2      a2         80     30  a2            SP, DA
+a1      a2      a1      a1      a2         91     50  a1            MR, WC, SP
+a1      a2      a1      a2      a2          3      0  a2            HAC, SP, DA
+a1      a2      a2      a1      a2         26     16  a1            MR, SP
+a1      a2      a2      a2      a1          7      2  a2            HAC, WC, SP
+a2      a1      a1      a2      a1         32     14  a2            MR, SP
+a2      a1      a2      a1      a1          4      3  a1            HAC, SP, DA
+a2      a1      a2      a2      a1        136     38  a2            MR, WC, SP
+a2      a2      a2      a1      a1          5      4  a1            SP, DA
+a2      a2      a2      a2      a1        287     83  a2            MR, HAC, WC, SP
+
+sklearn export_text:
+|--- f_SP <= 0.50
+|   |--- f_WC <= 0.50
+|   |   |--- f_HAC <= 0.50
+|   |   |   |--- f_MR <= 0.50
+|   |   |   |   |--- weights: [204.00, 83.00] class: 0
+|   |   |   |--- f_MR >  0.50
+|   |   |   |   |--- weights: [5.00, 2.00] class: 0
+|   |   |--- f_HAC >  0.50
+|   |   |   |--- weights: [98.00, 38.00] class: 0
+|   |--- f_WC >  0.50
+|   |   |--- f_HAC <= 0.50
+|   |   |   |--- weights: [3.00, 0.00] class: 0
+|   |   |--- f_HAC >  0.50
+|   |   |   |--- f_DA <= 0.50
+|   |   |   |   |--- weights: [50.00, 30.00] class: 0
+|   |   |   |--- f_DA >  0.50
+|   |   |   |   |--- weights: [18.00, 14.00] class: 0
+|--- f_SP >  0.50
+|   |--- f_HAC <= 0.50
+|   |   |--- f_DA <= 0.50
+|   |   |   |--- f_WC <= 0.50
+|   |   |   |   |--- weights: [10.00, 16.00] class: 1
+|   |   |   |--- f_WC >  0.50
+|   |   |   |   |--- weights: [41.00, 50.00] class: 1
+|   |   |--- f_DA >  0.50
+|   |   |   |--- weights: [1.00, 4.00] class: 1
+|   |--- f_HAC >  0.50
+|   |   |--- f_WC <= 0.50
+|   |   |   |--- weights: [1.00, 3.00] class: 1
+|   |   |--- f_WC >  0.50
+|   |   |   |--- weights: [120.00, 418.00] class: 1
+
+
+=== Row 2: f_MR, f_SP, f_DA  (depth 2, 4 leaves; LOO success 869/1209) ===
+
+Answer patterns that occur:
+f_MR    f_SP    f_DA    cases  a*=a1  tree returns  (= the answer of)
+a1      a1      a2        655    484  a1            MR, SP
+a1      a2      a2         90     32  a2            SP, DA
+a2      a1      a1          9      7  a1            SP, DA
+a2      a2      a1        455    135  a2            MR, SP
+
+sklearn export_text:
+|--- f_SP <= 0.50
+|   |--- f_DA <= 0.50
+|   |   |--- weights: [58.00, 32.00] class: 0
+|   |--- f_DA >  0.50
+|   |   |--- weights: [320.00, 135.00] class: 0
+|--- f_SP >  0.50
+|   |--- f_MR <= 0.50
+|   |   |--- weights: [2.00, 7.00] class: 1
+|   |--- f_MR >  0.50
+|   |   |--- weights: [171.00, 484.00] class: 1
+
+
+=== Row 3: f_MR, f_HAC, f_WC, f_DA  (depth 3, 6 leaves; LOO success 838/1209) ===
+
+Answer patterns that occur:
+f_MR    f_HAC   f_WC    f_DA    cases  a*=a1  tree returns  (= the answer of)
+a1      a1      a1      a2        618    448  a1            MR, HAC, WC
+a1      a2      a1      a2         94     50  a1            MR, WC
+a1      a2      a2      a1         33     18  a1            MR, DA
+a2      a1      a1      a2         32     14  a2            MR, DA
+a2      a1      a2      a1        140     41  a2            MR, WC
+a2      a2      a2      a1        292     87  a2            MR, HAC, WC
+
+sklearn export_text:
+|--- f_MR <= 0.50
+|   |--- f_WC <= 0.50
+|   |   |--- f_HAC <= 0.50
+|   |   |   |--- weights: [205.00, 87.00] class: 0
+|   |   |--- f_HAC >  0.50
+|   |   |   |--- weights: [99.00, 41.00] class: 0
+|   |--- f_WC >  0.50
+|   |   |--- weights: [18.00, 14.00] class: 0
+|--- f_MR >  0.50
+|   |--- f_HAC <= 0.50
+|   |   |--- f_DA <= 0.50
+|   |   |   |--- weights: [44.00, 50.00] class: 1
+|   |   |--- f_DA >  0.50
+|   |   |   |--- weights: [15.00, 18.00] class: 1
+|   |--- f_HAC >  0.50
+|   |   |--- weights: [170.00, 448.00] class: 1
+
+
+=== Row 4: f_MR, f_DA  (depth 1, 2 leaves; LOO success 838/1209) ===
+
+Answer patterns that occur:
+f_MR    f_DA    cases  a*=a1  tree returns  (= the answer of)
+a1      a2        745    516  a1            MR
+a2      a1        464    142  a2            MR
+
+sklearn export_text:
+|--- f_DA <= 0.50
+|   |--- weights: [229.00, 516.00] class: 1
+|--- f_DA >  0.50
+|   |--- weights: [322.00, 142.00] class: 0
+
+
+=== Row 5: f_MR, f_HAC, f_WC, f_SP  (depth 4, 11 leaves; LOO success 869/1209) ===
+
+Answer patterns that occur:
+f_MR    f_HAC   f_WC    f_SP    cases  a*=a1  tree returns  (= the answer of)
+a1      a1      a1      a1        538    418  a1            MR, HAC, WC, SP
+a1      a1      a1      a2         80     30  a2            SP
+a1      a2      a1      a1         91     50  a1            MR, WC, SP
+a1      a2      a1      a2          3      0  a2            HAC, SP
+a1      a2      a2      a1         26     16  a1            MR, SP
+a1      a2      a2      a2          7      2  a2            HAC, WC, SP
+a2      a1      a1      a2         32     14  a2            MR, SP
+a2      a1      a2      a1          4      3  a1            HAC, SP
+a2      a1      a2      a2        136     38  a2            MR, WC, SP
+a2      a2      a2      a1          5      4  a1            SP
+a2      a2      a2      a2        287     83  a2            MR, HAC, WC, SP
+
+sklearn export_text:
+|--- f_SP <= 0.50
+|   |--- f_WC <= 0.50
+|   |   |--- f_HAC <= 0.50
+|   |   |   |--- f_MR <= 0.50
+|   |   |   |   |--- weights: [204.00, 83.00] class: 0
+|   |   |   |--- f_MR >  0.50
+|   |   |   |   |--- weights: [5.00, 2.00] class: 0
+|   |   |--- f_HAC >  0.50
+|   |   |   |--- weights: [98.00, 38.00] class: 0
+|   |--- f_WC >  0.50
+|   |   |--- f_HAC <= 0.50
+|   |   |   |--- weights: [3.00, 0.00] class: 0
+|   |   |--- f_HAC >  0.50
+|   |   |   |--- f_MR <= 0.50
+|   |   |   |   |--- weights: [18.00, 14.00] class: 0
+|   |   |   |--- f_MR >  0.50
+|   |   |   |   |--- weights: [50.00, 30.00] class: 0
+|--- f_SP >  0.50
+|   |--- f_HAC <= 0.50
+|   |   |--- f_MR <= 0.50
+|   |   |   |--- weights: [1.00, 4.00] class: 1
+|   |   |--- f_MR >  0.50
+|   |   |   |--- f_WC <= 0.50
+|   |   |   |   |--- weights: [10.00, 16.00] class: 1
+|   |   |   |--- f_WC >  0.50
+|   |   |   |   |--- weights: [41.00, 50.00] class: 1
+|   |--- f_HAC >  0.50
+|   |   |--- f_WC <= 0.50
+|   |   |   |--- weights: [1.00, 3.00] class: 1
+|   |   |--- f_WC >  0.50
+|   |   |   |--- weights: [120.00, 418.00] class: 1
+

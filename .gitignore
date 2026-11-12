@@ -1,0 +1,31 @@
+# data, builds and run outputs are not part of the repository
+/data/*
+!/data/.gitkeep
+/build/
+/runs/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# local settings and secrets
+.env
+.env.*
+
+# logs
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

@@ -1,0 +1,388 @@
+{
+  "_marker": "SYNTHETIC — not a reproduction",
+  "layout": "cdm.data.worldB.loader (assumed layout; UNTESTED ON REAL DATA)",
+  "synthetic": true,
+  "n_tasks": 22,
+  "n_responses": 2490,
+  "confidence_range": [
+    0,
+    1
+  ],
+  "ps_scale": 1,
+  "files": {
+    "worldB_tasks.csv": "ec0b572bd4dd17d52f8ea2e6359281d37199bc575fed213ac2473aa6c440e7f1",
+    "worldB_responses.csv": "293a4725c5bd358c1690869e412a77d94d7c198a7838e11568d0050b6e1cdd98"
+  },
+  "generator": "cdm.data.worldB.synthetic",
+  "seed": 0,
+  "parameters": {
+    "lure_share_mean": 0.4,
+    "lure_share_concentration": 10.0,
+    "distractor_alpha": 2.0,
+    "conf_base": 0.6,
+    "conf_popularity_slope": 0.2,
+    "conf_solver_bonus": 0.0,
+    "conf_concentration": 16.0,
+    "ps_own_shift": 0.3,
+    "ps_solver_lure_shift": 0.5,
+    "ps_concentration": 20.0,
+    "ps_onehot_rate": 0.05,
+    "ps_floor": 1e-06
+  },
+  "parameter_tags": {
+    "lure_share_mean": "INVENTED-CALIBRATED",
+    "lure_share_concentration": "INVENTED",
+    "distractor_alpha": "INVENTED-CALIBRATED",
+    "conf_base": "INVENTED",
+    "conf_popularity_slope": "INVENTED-CALIBRATED",
+    "conf_solver_bonus": "INVENTED-CALIBRATED",
+    "conf_concentration": "INVENTED-CALIBRATED",
+    "ps_own_shift": "INVENTED-CALIBRATED",
+    "ps_solver_lure_shift": "INVENTED-CALIBRATED",
+    "ps_concentration": "INVENTED-CALIBRATED",
+    "ps_onehot_rate": "INVENTED",
+    "ps_floor": "INVENTED"
+  },
+  "layout_invented": [
+    {
+      "task_id": "SYNTHETIC-T01",
+      "name": "Apple",
+      "correct": "o2",
+      "lure": "o4",
+      "lure_share": 0.353529127723869,
+      "votes": {
+        "o1": 2,
+        "o2": 25,
+        "o3": 42,
+        "o4": 27
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T02",
+      "name": "Bakery",
+      "correct": "o7",
+      "lure": "o2",
+      "lure_share": 0.3606909126784112,
+      "votes": {
+        "o1": 4,
+        "o2": 28,
+        "o3": 9,
+        "o4": 5,
+        "o5": 5,
+        "o6": 16,
+        "o7": 24
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T03",
+      "name": "Blue Yellow Crowns",
+      "correct": "o4",
+      "lure": "o6",
+      "lure_share": 0.45869729984513463,
+      "votes": {
+        "o1": 10,
+        "o2": 16,
+        "o3": 0,
+        "o4": 21,
+        "o5": 3,
+        "o6": 28,
+        "o7": 4,
+        "o8": 11
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T04",
+      "name": "Bobs Coins",
+      "correct": "o4",
+      "lure": "o3",
+      "lure_share": 0.22473682187386748,
+      "votes": {
+        "o1": 33,
+        "o2": 28,
+        "o3": 14,
+        "o4": 13
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T05",
+      "name": "Boxes of Diamonds",
+      "correct": "o2",
+      "lure": "o3",
+      "lure_share": 0.36252831161744037,
+      "votes": {
+        "o1": 16,
+        "o2": 13,
+        "o3": 28,
+        "o4": 20,
+        "o5": 13
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T06",
+      "name": "Coin",
+      "correct": "o3",
+      "lure": "o7",
+      "lure_share": 0.46172994006062346,
+      "votes": {
+        "o1": 5,
+        "o2": 7,
+        "o3": 28,
+        "o4": 6,
+        "o5": 4,
+        "o6": 15,
+        "o7": 31
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T07",
+      "name": "Colliding Robots",
+      "correct": "o6",
+      "lure": "o7",
+      "lure_share": 0.4600782425385979,
+      "votes": {
+        "o1": 30,
+        "o2": 16,
+        "o3": 1,
+        "o4": 28,
+        "o5": 14,
+        "o6": 45,
+        "o7": 82,
+        "o8": 32
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T08",
+      "name": "Frog",
+      "correct": "o1",
+      "lure": "o2",
+      "lure_share": 0.2535746898717456,
+      "votes": {
+        "o1": 45,
+        "o2": 15,
+        "o3": 19,
+        "o4": 15,
+        "o5": 2
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T09",
+      "name": "Knapsack 1",
+      "correct": "o6",
+      "lure": "o2",
+      "lure_share": 0.24076927088956618,
+      "votes": {
+        "o1": 5,
+        "o2": 17,
+        "o3": 10,
+        "o4": 4,
+        "o5": 23,
+        "o6": 37
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T10",
+      "name": "Knapsack 2",
+      "correct": "o3",
+      "lure": "o5",
+      "lure_share": 0.41782344929128984,
+      "votes": {
+        "o1": 5,
+        "o2": 10,
+        "o3": 53,
+        "o4": 3,
+        "o5": 22,
+        "o6": 6
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T11",
+      "name": "Letter Dice",
+      "correct": "o2",
+      "lure": "o6",
+      "lure_share": 0.4778744472795548,
+      "votes": {
+        "o1": 8,
+        "o2": 48,
+        "o3": 6,
+        "o4": 4,
+        "o5": 7,
+        "o6": 20
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T12",
+      "name": "Magic Potion",
+      "correct": "o1",
+      "lure": "o5",
+      "lure_share": 0.16785961640765193,
+      "votes": {
+        "o1": 31,
+        "o2": 38,
+        "o3": 76,
+        "o4": 6,
+        "o5": 42,
+        "o6": 5,
+        "o7": 40,
+        "o8": 72
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T13",
+      "name": "Pills",
+      "correct": "o2",
+      "lure": "o6",
+      "lure_share": 0.26029364564926516,
+      "votes": {
+        "o1": 10,
+        "o2": 32,
+        "o3": 9,
+        "o4": 2,
+        "o5": 3,
+        "o6": 10
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T14",
+      "name": "Race Cars",
+      "correct": "o2",
+      "lure": "o4",
+      "lure_share": 0.63688443332311,
+      "votes": {
+        "o1": 3,
+        "o2": 10,
+        "o3": 5,
+        "o4": 56,
+        "o5": 8,
+        "o6": 11,
+        "o7": 3,
+        "o8": 0
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T15",
+      "name": "Rush Hour 1",
+      "correct": "o1",
+      "lure": "o2",
+      "lure_share": 0.5983662579031863,
+      "votes": {
+        "o1": 54,
+        "o2": 43,
+        "o3": 8,
+        "o4": 13,
+        "o5": 3,
+        "o6": 0
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T16",
+      "name": "Rush Hour 2",
+      "correct": "o5",
+      "lure": "o1",
+      "lure_share": 0.27305153336443083,
+      "votes": {
+        "o1": 25,
+        "o2": 8,
+        "o3": 27,
+        "o4": 4,
+        "o5": 33,
+        "o6": 17
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T17",
+      "name": "Rush Hour 3",
+      "correct": "o2",
+      "lure": "o4",
+      "lure_share": 0.24516692146312039,
+      "votes": {
+        "o1": 18,
+        "o2": 36,
+        "o3": 20,
+        "o4": 22,
+        "o5": 6,
+        "o6": 9
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T18",
+      "name": "Rush Hour 4",
+      "correct": "o1",
+      "lure": "o3",
+      "lure_share": 0.3225309943796271,
+      "votes": {
+        "o1": 45,
+        "o2": 3,
+        "o3": 26,
+        "o4": 28,
+        "o5": 11,
+        "o6": 8
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T19",
+      "name": "The Hats Game",
+      "correct": "o1",
+      "lure": "o6",
+      "lure_share": 0.5664422869536753,
+      "votes": {
+        "o1": 9,
+        "o2": 2,
+        "o3": 17,
+        "o4": 13,
+        "o5": 1,
+        "o6": 42,
+        "o7": 4
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T20",
+      "name": "Three Robots",
+      "correct": "o6",
+      "lure": "o9",
+      "lure_share": 0.5294420469106242,
+      "votes": {
+        "o1": 4,
+        "o2": 2,
+        "o3": 5,
+        "o4": 3,
+        "o5": 3,
+        "o6": 26,
+        "o7": 1,
+        "o8": 8,
+        "o9": 34,
+        "o10": 2,
+        "o11": 4,
+        "o12": 1
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T21",
+      "name": "Traveler",
+      "correct": "o3",
+      "lure": "o4",
+      "lure_share": 0.09539571662257657,
+      "votes": {
+        "o1": 25,
+        "o2": 19,
+        "o3": 42,
+        "o4": 7
+      }
+    },
+    {
+      "task_id": "SYNTHETIC-T22",
+      "name": "Wine Barrels",
+      "correct": "o5",
+      "lure": "o6",
+      "lure_share": 0.2786522543976949,
+      "votes": {
+        "o1": 20,
+        "o2": 6,
+        "o3": 11,
+        "o4": 12,
+        "o5": 27,
+        "o6": 15
+      }
+    }
+  ],
+  "written": "2026-11-12T09:55:42Z"
+}

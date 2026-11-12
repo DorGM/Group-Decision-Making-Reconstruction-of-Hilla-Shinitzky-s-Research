@@ -1,0 +1,325 @@
+# Defaults for every open question (OQ) of docs/RECONSTRUCTION_PLAN.md section 8
+# (plus OQ1b and OQ44 from section 2.1.1).
+# Each entry: default = value used by the code; options = alternatives named
+# in the plan; plan = the recommended default as worded in the plan.
+# Change a switch here, never inside the code. load_config(path) reads another
+# file INSTEAD of this one (no merge): an alternative file must be a complete
+# copy of this file with the changed values.
+# The `plan:` strings are abridged paraphrases of plan §8, not verbatim quotes;
+# the `default:` values are the plan's defaults (see docs/IMPLEMENTATION_DECISIONS.md).
+
+seed: 0                 # OQ15: "Seeds fixed and recorded (0)"
+data_root: data         # relative to the repository root; env CDM_DATA_ROOT overrides (docs/DATA.md)
+
+# AM3 / AM9; set 0 for exact comparison.
+# Absolute tolerance used when FLOAT scores are compared for a tie:
+#   - WC, HAC and SP scores (and feature 12 through f_HAC)          [AM3]
+#   - r.c vs AvgC and r.ps[v] vs AvgPSV in features 16/17           [AM9]
+# Not applied to integer / label comparisons (MR, a_max, a_min, DA counters,
+# OQ8b, SG_B_Amax). A numeric safeguard, not a modelling choice: on a 0.01
+# grid the smallest true score gap is about 4e-8 at N = 1000.
+# (Write the value with a decimal point: PyYAML reads "1e-9" as text.)
+tie_abs_tol: 1.0e-9
+
+# DA rule when several answers share the lowest counter (cdm.aggregators.
+# DA_TIE_RULES). Not a plan §8 question.
+#   not_mr        : THESIS TEXT (TH p.35-36): "the answer that was not chosen
+#                   by MR". The default, used by every main run.
+#   first_answer / second_answer : LABELLED SENSITIVITY OPTIONS, not in the
+#                   thesis text: the first / second tied answer in the
+#                   canonical answer order. Controlled variants of this
+#                   implementation (docs/IMPLEMENTATION_DECISIONS.md G2).
+#                   Open question.
+da_tie_rule: not_mr
+
+# Nested CV (plan §5.2): what to do when two techniques share the highest
+# inner-LOO score in a fold. Neither the thesis nor the plan gives a rule.
+#   first_in_table_order : AM18 — default of this implementation: the
+#                          tied technique that comes first in
+#                          the column order of TH Table 5.1 / 5.2. For every
+#                          tied fold the test outcome under EACH tied
+#                          technique is also stored and reported.
+#   stop                 : raise TechniqueTieError (needs a checkpoint folder).
+technique_tie_rule: first_in_table_order
+
+open_questions:
+
+  # ---- Data (World A) ----
+  OQ1:
+    title: Source -> domain mapping; NFL source
+    default: rutchick_s1
+    options: [rutchick_s1, lee2018, both_subsampled]
+    plan: "(a) Rutchick S1. Validate by the NFL column of T3b; run the same gate on (b) (OQ1b)."
+  OQ1b:
+    title: Is Lee 2018 needed?
+    default: obtain_and_gate_both
+    options: [only_if_s1_gate_fails, obtain_and_gate_both, lee_as_nfl_source]
+    plan: "(b) obtain it now and run the NFL gate on both sources. The default build still uses Rutchick S1."
+  OQ2:
+    title: Confidence normalization
+    default:
+      martinie: a_abs_p_minus_50_over_50
+      likert: a_c_minus_1_over_4
+    options:
+      martinie: [a_abs_p_minus_50_over_50, b_max_p_100_minus_p_over_100, c_p_if_true_else_100_minus_p]
+      likert: [a_c_minus_1_over_4, b_c_over_5]
+    plan: "Martinie (a) c=|p-50|/50; Likert (a) (c-1)/4, both provisional."
+  OQ3:
+    title: Predicted-support construction
+    default:
+      binary: "ps[v]=x, ps[other]=1-x"
+      martinie: "ps[True]=y"
+      clip_to_unit_interval: true
+    plan: "as stated (the only coherent mapping). Clip to [0,1]."
+  OQ4:
+    title: Filters
+    default:
+      original_author_exclusions: true
+      martinie_drop_cheaters: true
+      martinie_drop_vote_inconsistent: true
+      complete_responses_only: true
+      drop_cases_0_or_100_percent_correct: true
+      min_n: null
+      lee_expert_only: false
+    options:
+      min_n: [null, 10]
+    plan: "Use the original authors' exclusions + complete responses + 0/100% exclusion. No N>=10 filter by default (it is switch 4 of the Step D5 ladder). Each exclusion is a loader flag."
+  OQ5:
+    title: Binary answer encoding for DAP targets and f_AG features
+    default: a_natural_source_coding
+    options: [a_natural_source_coding, b_raw_file_option_order, c_random_per_case_seeded]
+    plan: "(a) natural source coding: True=1; home team=1; for elections the first option as stored in the raw file. Required: run DAP LOO under (a) and (c) and report both."
+  OQ16:
+    title: Fold assignment
+    default:
+      scheme: unshuffled_kfold
+      n_splits: 10
+      domain_order: [General, NBA, NFL, Politics]
+      within_domain_order: source_file_order
+    options:
+      scheme: [unshuffled_kfold, shuffled_stratified]
+    plan: "Unshuffled KFold(10) with order General, NBA, NFL, Politics. Within-domain order: the source file order. Alternative: shuffled stratified, as a robustness check."
+  OQ44:
+    title: Original vs REVISED Rutchick files
+    default: revised
+    options: [revised, revert_logged_edits]
+    plan: "Default: use REVISED. Read Data Revisions.docx first and log every revision that touches games, participants or responses."
+
+  # ---- Feature definitions ----
+  OQ6:
+    title: Sub-set partition for SG features
+    default:
+      scheme: a_disjoint_floor_n_over_30
+      subset_size: 30
+      halves_if_k_below_2: true
+    options:
+      scheme: [a_disjoint_floor_n_over_30, b_overlapping_samples_of_30, c_ceil_n_over_30, d_floor_n_over_30_exactly_30_leftover_unused]
+    plan: "disjoint random partition into k=floor(N/30) near-equal sub-sets that use every response; if k<2, use 2 halves (for odd N the halves differ by one). Store the seed."
+  OQ7:
+    title: a_max/a_min ties, zero-vote answers, empty supporter sets
+    default:
+      support_vector_includes_zero_vote_answers: true
+      empty_supporters_in_subset: nan_then_impute_subset_avgc
+      ties: canonical_first
+      log_tie_frequency: true
+    options:
+      empty_supporters_in_subset: [nan_then_impute_subset_avgc, zero]
+    plan: "S(R) over all A_P: yes. a_min with zero supporters in a sub-set: NaN, then impute the global AvgC of that sub-set (flag; alternative 0). Ties: first answer in a fixed canonical order (deterministic). Log the frequency."
+  OQ9:
+    title: '"Variance" = population SD'
+    default: population_sd
+    options: [population_sd, population_variance]
+    plan: "yes (population SD). Keep a switch."
+  OQ10:
+    title: Entropy base
+    default: 2
+    plan: "Entropy base 2: yes (A.2 ES=0.820)."
+  OQ11:
+    title: D_S_Uniform distance
+    default: euclidean
+    plan: "D_S_Uniform Euclidean: yes (A.2 0.346)."
+  OQ12:
+    title: Per-subset a_max vs global a_max for SG features
+    default: per_subset
+    options: [per_subset, global]
+    plan: "per-subset a_max/a_min. Global as an alternative. A.2 cannot discriminate."
+  OQ13:
+    title: Strict vs non-strict inequalities in features 16/17
+    default: strict
+    options: [strict, non_strict]
+    plan: "strict, as printed."
+  OQ14:
+    title: B_Amax_MaxCa under HAC ties
+    default: f_hac_with_oq8_tie_rule
+    plan: "use f_HAC with the same tie rule as OQ8."
+  OQ28:
+    title: ChosenMajAns / IsMajority with tied majorities
+    default: one_for_all_tied_top_answers
+    options: [one_for_all_tied_top_answers, canonical_first]
+    plan: "1 for all tied top answers (flag); alternative: canonical first."
+  OQ36:
+    title: Source note, feature 22 (TH Table 3.2)
+    default: use_confidence
+    plan: "use confidence for feature 22."
+  OQ37:
+    title: Source note, PSvD_OG in Table A.4
+    default: 0.940
+    plan: "PSvD_OG(A.4) = 0.940."
+  OQ39:
+    title: Predicted-support vectors in World B may not sum to 100%
+    default: renormalize_if_violated
+    options: [renormalize_if_violated, raw]
+    plan: "use as given / 100. If the real data violates the 100% total, renormalize (default) and report the raw variant as sensitivity."
+  OQ41:
+    title: Features 16/17 in ablations
+    default: dropped_whenever_either_group_dropped
+    options: [dropped_whenever_either_group_dropped, kept_unless_both_groups_dropped]
+    plan: "dropped whenever either group (Conf or PS) is dropped. Alternative (rows 2-4 only): keep them unless both groups are dropped."
+  OQ42:
+    title: Bagging sampling
+    default:
+      within_case: without_replacement
+      subgroups_independent: true
+    plan: "each sub-group is drawn without replacement within the case; sub-groups are independent of each other."
+  OQ43:
+    title: Synthetic World-B generator parameters
+    default: invented_calibrated_to_T24_only
+    plan: "invented, calibrated to T24 only, and to be replaced by the real data."
+
+  # ---- Aggregators ----
+  OQ8:
+    title: Ties in MR/WC/HAC/SP
+    default: canonical_first
+    options: [canonical_first, canonical_second, random, sp_tie_half_credit]
+    log: true
+    # canonical_second and sp_tie_half_credit are the Step D5 ladder (item 1).
+    # canonical_second: defined for a tie between two answers.
+    # sp_tie_half_credit: a scoring rule (binary SP tie = 0.5 correct, via
+    #   aggregators.success_credit); the SP answer of a tied case, and so DA,
+    #   is not defined by the plan and raises.
+    # random: listed by the plan but not implemented (no seed convention); raises.
+    plan: "deterministic canonical order (first answer), logged. Alternatives: random; SP tie = 0.5 (Rutchick)."
+  OQ8b:
+    title: DA ties among several non-MR answers (m>2)
+    default: lowest_support_among_tied_non_mr
+    plan: "not needed for World A. If DA is used on multi-class data: choose among tied non-MR answers by lowest support and flag it."
+  OQ38:
+    title: SP for m>2
+    default: thesis_difference_form
+    options: [thesis_difference_form, prelec_normalized_form]
+    plan: "thesis difference form. Prelec's normalized form as an optional extra."
+
+  # ---- ML set-up ----
+  OQ15:
+    title: Hyperparameters, versions, scaling
+    default:
+      hyperparameters: sklearn_defaults
+      rf_n_estimators: 100
+      knn_k: 5
+      lr_solver: lbfgs
+      lr_max_iter: 10000  # AM18 — default of this implementation; sensitivity 100. (The plan says "raised to avoid non-convergence" and gives no number. Every run counts the fits that did not converge: lr_not_converged.)
+      scaling: none
+      seed: 0
+    options:
+      scaling: [none, standard_scaler]
+    plan: "sklearn defaults (RF n_estimators=100, KNN k=5, LR lbfgs max_iter raised to avoid non-convergence). No scaling. StandardScaler as a sensitivity run. Seeds fixed and recorded (0)."
+  OQ17:
+    title: AMP argmax ties
+    default: first_label_in_order
+    label_order: [MR, HAC, WC, SP, DA]
+    options: [first_label_in_order, prefer_mr]
+    plan: "first label in the order (MR, HAC, WC, SP, DA) (thesis order, TH p.37). Alternative: prefer MR."
+  OQ18:
+    title: Inner-LOO score
+    default: amp_protocol_success_rate
+    plan: "Inner-LOO score = AMP-protocol success rate (TH p.45): yes."
+  OQ19:
+    title: CC chain order; LP marginals
+    default: scikit_multilearn_defaults
+    plan: "scikit-multilearn defaults (order = label order; LP marginalization)."
+  OQ21:
+    title: Classic meta-learning protocol
+    default:
+      protocol: loo
+      model: DecisionTreeClassifier_defaults
+      random_state: 0
+    plan: "LOO, DecisionTreeClassifier defaults, random_state=0."
+  OQ22:
+    title: Bagging details
+    default:
+      size_formula: a_as_printed_Z_S_1_minus_S_over_0.01
+      z: 1.645
+      size_rounding: ceil
+      within_subgroup: without_replacement
+      subgroups_independent: true
+      recompute_labels_and_f_ag_per_subgroup: true
+      recompute_sg_features_per_subgroup: true
+    options:
+      size_formula: [a_as_printed_Z_S_1_minus_S_over_0.01, b_cochran_Z2_S_1_minus_S_over_0.01]
+      z: [1.645, 1.96]
+    plan: "Size formula (a) as printed, Z*S(1-S)/0.1^2; (b) Cochran as a sensitivity. Z = 1.645. Rounding: ceil. Without replacement within a sub-group. Sub-groups drawn independently. SG features recomputed inside each sub-group."
+  OQ23:
+    title: Bagging folds
+    default: same_as_model_selection_folds
+    plan: "The bagging folds equal the model-selection folds (TH p.51)."
+  OQ25:
+    title: World-B partition randomness
+    default:
+      use_original_assignment_if_available: true
+      n_seeds: 30
+      report: mean_and_sd
+    plan: "use the original assignment if it is available. Otherwise random with a seed, repeated over 30 seeds; report mean +- SD."
+  OQ26:
+    title: Soft-voting ensemble
+    default:
+      ensemble: VotingClassifier_soft_equal_weights
+      members: [LDA, RF, XGBClassifier, LR, KNN]
+      member_hyperparameters: defaults
+      scaling: none
+    plan: "VotingClassifier(voting='soft') with equal weights. Defaults for LDA, RF, XGBClassifier, LR and KNN; no scaling."
+  OQ27:
+    title: RP strategy details
+    default:
+      prop: n_true_over_n_supporters
+      ties: chosen_tie_breaker_then_canonical_order
+      tie_breaker_percentage: share_of_77_subsets_where_primary_criterion_tied
+      no_supporter_predicted_true: prop_zero_for_all_then_tie_breaker
+    plan: "prop = #True/#supporters. Ties -> the chosen tie-breaker; a further tie -> canonical order. 'Percentage of tie breakers' = share of the 77 sub-sets where the primary criterion tied. When no supporter is predicted True, prop is 0 for all answers -> tie -> avgp decides."
+  OQ33:
+    title: Class imbalance (RP)
+    default: none
+    plan: "none (not mentioned)."
+  OQ35:
+    title: Bag-KNN / SVM for A.7/A.8
+    default:
+      bag_knn: BaggingClassifier(KNeighborsClassifier())_defaults
+      svm: SVC(probability=True)_defaults
+    plan: "BaggingClassifier(KNeighborsClassifier()) and SVC(probability=True) defaults."
+
+  # ---- Evaluation and reporting ----
+  OQ30:
+    title: SHAP model/explainer
+    default:
+      faithful: xgboost_per_label_TreeExplainer_log_odds_beeswarm_max_display_20
+      comparison: KernelExplainer_on_actual_model
+      trained_on: all_data
+    plan: "(i) XGBoost per label (CDMCR) and for RCR/ACR, TreeExplainer, log-odds, beeswarm max_display=20. (ii) Also KernelExplainer on the actual ensemble/RF. SHAP is computed on models trained on all data."
+  OQ31:
+    title: McNemar variant (resolved, kept for the record)
+    default: chi2_continuity_corrected_two_sided
+    resolved: true
+    plan: "resolved: chi-square with continuity correction, two-sided (section 5.8 item 4)."
+  OQ32:
+    title: Which AMP/DAP headline is the target
+    default: both
+    primary: th_10_fold
+    secondary: mla_loo
+    plan: "both: TH 10-fold (T1/T2) as primary, MLA LOO (T19) as secondary."
+  OQ34:
+    title: 2514 vs 2490 responses (World B)
+    default: whichever_the_real_file_has
+    plan: "whichever the real file has. Document it."
+  OQ40:
+    title: Per-domain tables
+    default: slice_global_predictions_by_domain
+    plan: "slice the global predictions by domain (TH p.69); the LOO version comes from the 5.3 run."

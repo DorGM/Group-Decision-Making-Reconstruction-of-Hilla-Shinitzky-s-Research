@@ -1,0 +1,1116 @@
+{
+ "step": "A17 classic meta-learning (DecisionTree on f_AG only, LOO)",
+ "header": {
+  "written": "2026-11-12T10:03:05Z",
+  "argv": [
+   "scripts/run_a17_metalearn.py",
+   "--build",
+   "waiver_main",
+   "--runs-root",
+   "runs"
+  ],
+  "data": {
+   "kind": "real",
+   "build": "waiver_main",
+   "build_dir": "build/worldA/waiver_main",
+   "gate": {
+    "build": "waiver_main",
+    "cases_sha256": "c237695153557e02862adf8f823098f849831a98ed6e737595b9d6950794635c",
+    "status": "waived",
+    "role": "primary",
+    "date": "2026-11-11",
+    "decided_by": "project owner",
+    "reference": "docs/RULE_BASELINE_CHECK.md",
+    "amendment": "AM17"
+   },
+   "manifest_status": "hypothesis \u2014 used with the rule-baseline differences documented (NBA and NFL rule-baseline counts differ from the thesis-reported counts)",
+   "manifest_created": "2026-11-12T09:53:44+00:00",
+   "limit": null,
+   "n_cases": 1209,
+   "instance_seed": 0,
+   "instance_log": {
+    "amax_tie": 21,
+    "amin_tie": 21,
+    "hac_tie": 7,
+    "single_subset": 0,
+    "cases_with_imputed_CAmin": 169,
+    "cases_with_imputed_CAmax": 0,
+    "cases_with_subset_amax_ties": 62,
+    "cases_with_subset_amin_ties": 62,
+    "nan_features": {},
+    "non_binary_cases": 0
+   },
+   "rule_baselines": {
+    "SP": {
+     "recomputed": 869,
+     "n": 1209,
+     "rate": 0.7187758478081059,
+     "thesis": 864,
+     "difference": 5
+    },
+    "MR": {
+     "recomputed": 838,
+     "n": 1209,
+     "rate": 0.6931348221670802,
+     "thesis": 831,
+     "difference": 7
+    },
+    "WC": {
+     "recomputed": 831,
+     "n": 1209,
+     "rate": 0.6873449131513648,
+     "thesis": 830,
+     "difference": 1
+    },
+    "HAC": {
+     "recomputed": 767,
+     "n": 1209,
+     "rate": 0.6344086021505376,
+     "thesis": 774,
+     "difference": -7
+    },
+    "DA": {
+     "recomputed": 368,
+     "n": 1209,
+     "rate": 0.304383788254756,
+     "thesis": 372,
+     "difference": -4
+    }
+   },
+   "rule_baselines_by_domain": {
+    "all": {
+     "SP": {
+      "recomputed": 869,
+      "n": 1209,
+      "thesis": 864,
+      "thesis_n": 1209
+     },
+     "MR": {
+      "recomputed": 838,
+      "n": 1209,
+      "thesis": 831,
+      "thesis_n": 1209
+     },
+     "WC": {
+      "recomputed": 831,
+      "n": 1209,
+      "thesis": 830,
+      "thesis_n": 1209
+     },
+     "HAC": {
+      "recomputed": 767,
+      "n": 1209,
+      "thesis": 774,
+      "thesis_n": 1209
+     },
+     "DA": {
+      "recomputed": 368,
+      "n": 1209,
+      "thesis": 372,
+      "thesis_n": 1209
+     }
+    },
+    "General": {
+     "SP": {
+      "recomputed": 413,
+      "n": 500,
+      "thesis": 413,
+      "thesis_n": 500
+     },
+     "MR": {
+      "recomputed": 385,
+      "n": 500,
+      "thesis": 385,
+      "thesis_n": 500
+     },
+     "WC": {
+      "recomputed": 380,
+      "n": 500,
+      "thesis": 380,
+      "thesis_n": 500
+     },
+     "HAC": {
+      "recomputed": 338,
+      "n": 500,
+      "thesis": 338,
+      "thesis_n": 500
+     },
+     "DA": {
+      "recomputed": 111,
+      "n": 500,
+      "thesis": 108,
+      "thesis_n": 500
+     }
+    },
+    "NBA": {
+     "SP": {
+      "recomputed": 260,
+      "n": 393,
+      "thesis": 258,
+      "thesis_n": 393
+     },
+     "MR": {
+      "recomputed": 256,
+      "n": 393,
+      "thesis": 252,
+      "thesis_n": 393
+     },
+     "WC": {
+      "recomputed": 252,
+      "n": 393,
+      "thesis": 253,
+      "thesis_n": 393
+     },
+     "HAC": {
+      "recomputed": 230,
+      "n": 393,
+      "thesis": 237,
+      "thesis_n": 393
+     },
+     "DA": {
+      "recomputed": 137,
+      "n": 393,
+      "thesis": 142,
+      "thesis_n": 393
+     }
+    },
+    "NFL": {
+     "SP": {
+      "recomputed": 112,
+      "n": 212,
+      "thesis": 109,
+      "thesis_n": 212
+     },
+     "MR": {
+      "recomputed": 114,
+      "n": 212,
+      "thesis": 111,
+      "thesis_n": 212
+     },
+     "WC": {
+      "recomputed": 117,
+      "n": 212,
+      "thesis": 114,
+      "thesis_n": 212
+     },
+     "HAC": {
+      "recomputed": 131,
+      "n": 212,
+      "thesis": 131,
+      "thesis_n": 212
+     },
+     "DA": {
+      "recomputed": 99,
+      "n": 212,
+      "thesis": 101,
+      "thesis_n": 212
+     }
+    },
+    "Politics": {
+     "SP": {
+      "recomputed": 84,
+      "n": 104,
+      "thesis": 84,
+      "thesis_n": 104
+     },
+     "MR": {
+      "recomputed": 83,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "WC": {
+      "recomputed": 82,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "HAC": {
+      "recomputed": 68,
+      "n": 104,
+      "thesis": 68,
+      "thesis_n": 104
+     },
+     "DA": {
+      "recomputed": 21,
+      "n": 104,
+      "thesis": 21,
+      "thesis_n": 104
+     }
+    }
+   }
+  },
+  "settings": {
+   "OQ21": {
+    "protocol": "loo",
+    "random_state": 0
+   },
+   "random_state_used": 0
+  }
+ },
+ "complete": true,
+ "seconds": 7.588608741760254,
+ "rows": {
+  "1": {
+   "features": [
+    "f_MR",
+    "f_HAC",
+    "f_WC",
+    "f_SP",
+    "f_DA"
+   ],
+   "rules_heard_by_DA": [
+    "MR",
+    "WC",
+    "HAC",
+    "SP"
+   ],
+   "successes": 869,
+   "n": 1209,
+   "rate": 0.7187758478081059,
+   "rounded": 0.719,
+   "thesis_rate": 0.713,
+   "half_rows": 0,
+   "domains": {
+    "General": {
+     "n": 500,
+     "successes": 413,
+     "rate": 0.826,
+     "rounded": 0.826
+    },
+    "NBA": {
+     "n": 393,
+     "successes": 260,
+     "rate": 0.6615776081424937,
+     "rounded": 0.662
+    },
+    "NFL": {
+     "n": 212,
+     "successes": 112,
+     "rate": 0.5283018867924528,
+     "rounded": 0.528
+    },
+    "Politics": {
+     "n": 104,
+     "successes": 84,
+     "rate": 0.8076923076923077,
+     "rounded": 0.808
+    },
+    "all": {
+     "n": 1209,
+     "successes": 869,
+     "rate": 0.7187758478081059,
+     "rounded": 0.719
+    }
+   },
+   "tree": {
+    "depth": 4,
+    "n_leaves": 11,
+    "patterns": [
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 1,
+       "f_DA": 0
+      },
+      "n": 538,
+      "n_correct_is_a1": 418,
+      "predicted": "a1",
+      "p_a1": 0.7769516728624535,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 0,
+       "f_DA": 0
+      },
+      "n": 80,
+      "n_correct_is_a1": 30,
+      "predicted": "a2",
+      "p_a1": 0.375,
+      "agrees_with": [
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 1,
+       "f_SP": 1,
+       "f_DA": 0
+      },
+      "n": 91,
+      "n_correct_is_a1": 50,
+      "predicted": "a1",
+      "p_a1": 0.5494505494505495,
+      "agrees_with": [
+       "MR",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 1,
+       "f_SP": 0,
+       "f_DA": 0
+      },
+      "n": 3,
+      "n_correct_is_a1": 0,
+      "predicted": "a2",
+      "p_a1": 0.0,
+      "agrees_with": [
+       "HAC",
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 1,
+       "f_DA": 0
+      },
+      "n": 26,
+      "n_correct_is_a1": 16,
+      "predicted": "a1",
+      "p_a1": 0.6153846153846154,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 0,
+       "f_DA": 1
+      },
+      "n": 7,
+      "n_correct_is_a1": 2,
+      "predicted": "a2",
+      "p_a1": 0.2857142857142857,
+      "agrees_with": [
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 0,
+       "f_DA": 1
+      },
+      "n": 32,
+      "n_correct_is_a1": 14,
+      "predicted": "a2",
+      "p_a1": 0.4375,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 0,
+       "f_SP": 1,
+       "f_DA": 1
+      },
+      "n": 4,
+      "n_correct_is_a1": 3,
+      "predicted": "a1",
+      "p_a1": 0.75,
+      "agrees_with": [
+       "HAC",
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 0,
+       "f_SP": 0,
+       "f_DA": 1
+      },
+      "n": 136,
+      "n_correct_is_a1": 38,
+      "predicted": "a2",
+      "p_a1": 0.27941176470588236,
+      "agrees_with": [
+       "MR",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 1,
+       "f_DA": 1
+      },
+      "n": 5,
+      "n_correct_is_a1": 4,
+      "predicted": "a1",
+      "p_a1": 0.8,
+      "agrees_with": [
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 0,
+       "f_DA": 1
+      },
+      "n": 287,
+      "n_correct_is_a1": 83,
+      "predicted": "a2",
+      "p_a1": 0.289198606271777,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     }
+    ]
+   }
+  },
+  "2": {
+   "features": [
+    "f_MR",
+    "f_SP",
+    "f_DA"
+   ],
+   "rules_heard_by_DA": [
+    "MR",
+    "SP"
+   ],
+   "successes": 869,
+   "n": 1209,
+   "rate": 0.7187758478081059,
+   "rounded": 0.719,
+   "thesis_rate": 0.708,
+   "half_rows": 0,
+   "domains": {
+    "General": {
+     "n": 500,
+     "successes": 413,
+     "rate": 0.826,
+     "rounded": 0.826
+    },
+    "NBA": {
+     "n": 393,
+     "successes": 260,
+     "rate": 0.6615776081424937,
+     "rounded": 0.662
+    },
+    "NFL": {
+     "n": 212,
+     "successes": 112,
+     "rate": 0.5283018867924528,
+     "rounded": 0.528
+    },
+    "Politics": {
+     "n": 104,
+     "successes": 84,
+     "rate": 0.8076923076923077,
+     "rounded": 0.808
+    },
+    "all": {
+     "n": 1209,
+     "successes": 869,
+     "rate": 0.7187758478081059,
+     "rounded": 0.719
+    }
+   },
+   "tree": {
+    "depth": 2,
+    "n_leaves": 4,
+    "patterns": [
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_SP": 1,
+       "f_DA": 0
+      },
+      "n": 655,
+      "n_correct_is_a1": 484,
+      "predicted": "a1",
+      "p_a1": 0.7389312977099237,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_SP": 0,
+       "f_DA": 0
+      },
+      "n": 90,
+      "n_correct_is_a1": 32,
+      "predicted": "a2",
+      "p_a1": 0.35555555555555557,
+      "agrees_with": [
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_SP": 1,
+       "f_DA": 1
+      },
+      "n": 9,
+      "n_correct_is_a1": 7,
+      "predicted": "a1",
+      "p_a1": 0.7777777777777778,
+      "agrees_with": [
+       "SP",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_SP": 0,
+       "f_DA": 1
+      },
+      "n": 455,
+      "n_correct_is_a1": 135,
+      "predicted": "a2",
+      "p_a1": 0.2967032967032967,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     }
+    ]
+   }
+  },
+  "3": {
+   "features": [
+    "f_MR",
+    "f_HAC",
+    "f_WC",
+    "f_DA"
+   ],
+   "rules_heard_by_DA": [
+    "MR",
+    "WC",
+    "HAC"
+   ],
+   "successes": 838,
+   "n": 1209,
+   "rate": 0.6931348221670802,
+   "rounded": 0.693,
+   "thesis_rate": 0.695,
+   "half_rows": 0,
+   "domains": {
+    "General": {
+     "n": 500,
+     "successes": 385,
+     "rate": 0.77,
+     "rounded": 0.77
+    },
+    "NBA": {
+     "n": 393,
+     "successes": 256,
+     "rate": 0.6513994910941476,
+     "rounded": 0.651
+    },
+    "NFL": {
+     "n": 212,
+     "successes": 114,
+     "rate": 0.5377358490566038,
+     "rounded": 0.538
+    },
+    "Politics": {
+     "n": 104,
+     "successes": 83,
+     "rate": 0.7980769230769231,
+     "rounded": 0.798
+    },
+    "all": {
+     "n": 1209,
+     "successes": 838,
+     "rate": 0.6931348221670802,
+     "rounded": 0.693
+    }
+   },
+   "tree": {
+    "depth": 3,
+    "n_leaves": 6,
+    "patterns": [
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_DA": 0
+      },
+      "n": 618,
+      "n_correct_is_a1": 448,
+      "predicted": "a1",
+      "p_a1": 0.7249190938511327,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 1,
+       "f_DA": 0
+      },
+      "n": 94,
+      "n_correct_is_a1": 50,
+      "predicted": "a1",
+      "p_a1": 0.5319148936170213,
+      "agrees_with": [
+       "MR",
+       "WC"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_DA": 1
+      },
+      "n": 33,
+      "n_correct_is_a1": 18,
+      "predicted": "a1",
+      "p_a1": 0.5454545454545454,
+      "agrees_with": [
+       "MR",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_DA": 0
+      },
+      "n": 32,
+      "n_correct_is_a1": 14,
+      "predicted": "a2",
+      "p_a1": 0.4375,
+      "agrees_with": [
+       "MR",
+       "DA"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 0,
+       "f_DA": 1
+      },
+      "n": 140,
+      "n_correct_is_a1": 41,
+      "predicted": "a2",
+      "p_a1": 0.29285714285714287,
+      "agrees_with": [
+       "MR",
+       "WC"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_DA": 1
+      },
+      "n": 292,
+      "n_correct_is_a1": 87,
+      "predicted": "a2",
+      "p_a1": 0.2979452054794521,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC"
+      ]
+     }
+    ]
+   }
+  },
+  "4": {
+   "features": [
+    "f_MR",
+    "f_DA"
+   ],
+   "rules_heard_by_DA": [
+    "MR"
+   ],
+   "successes": 838,
+   "n": 1209,
+   "rate": 0.6931348221670802,
+   "rounded": 0.693,
+   "thesis_rate": 0.687,
+   "half_rows": 0,
+   "domains": {
+    "General": {
+     "n": 500,
+     "successes": 385,
+     "rate": 0.77,
+     "rounded": 0.77
+    },
+    "NBA": {
+     "n": 393,
+     "successes": 256,
+     "rate": 0.6513994910941476,
+     "rounded": 0.651
+    },
+    "NFL": {
+     "n": 212,
+     "successes": 114,
+     "rate": 0.5377358490566038,
+     "rounded": 0.538
+    },
+    "Politics": {
+     "n": 104,
+     "successes": 83,
+     "rate": 0.7980769230769231,
+     "rounded": 0.798
+    },
+    "all": {
+     "n": 1209,
+     "successes": 838,
+     "rate": 0.6931348221670802,
+     "rounded": 0.693
+    }
+   },
+   "tree": {
+    "depth": 1,
+    "n_leaves": 2,
+    "patterns": [
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_DA": 0
+      },
+      "n": 745,
+      "n_correct_is_a1": 516,
+      "predicted": "a1",
+      "p_a1": 0.6926174496644295,
+      "agrees_with": [
+       "MR"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_DA": 1
+      },
+      "n": 464,
+      "n_correct_is_a1": 142,
+      "predicted": "a2",
+      "p_a1": 0.30603448275862066,
+      "agrees_with": [
+       "MR"
+      ]
+     }
+    ]
+   }
+  },
+  "5": {
+   "features": [
+    "f_MR",
+    "f_HAC",
+    "f_WC",
+    "f_SP"
+   ],
+   "rules_heard_by_DA": [
+    "MR",
+    "WC",
+    "HAC",
+    "SP"
+   ],
+   "successes": 869,
+   "n": 1209,
+   "rate": 0.7187758478081059,
+   "rounded": 0.719,
+   "thesis_rate": 0.713,
+   "half_rows": 0,
+   "domains": {
+    "General": {
+     "n": 500,
+     "successes": 413,
+     "rate": 0.826,
+     "rounded": 0.826
+    },
+    "NBA": {
+     "n": 393,
+     "successes": 260,
+     "rate": 0.6615776081424937,
+     "rounded": 0.662
+    },
+    "NFL": {
+     "n": 212,
+     "successes": 112,
+     "rate": 0.5283018867924528,
+     "rounded": 0.528
+    },
+    "Politics": {
+     "n": 104,
+     "successes": 84,
+     "rate": 0.8076923076923077,
+     "rounded": 0.808
+    },
+    "all": {
+     "n": 1209,
+     "successes": 869,
+     "rate": 0.7187758478081059,
+     "rounded": 0.719
+    }
+   },
+   "tree": {
+    "depth": 4,
+    "n_leaves": 11,
+    "patterns": [
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 1
+      },
+      "n": 538,
+      "n_correct_is_a1": 418,
+      "predicted": "a1",
+      "p_a1": 0.7769516728624535,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 0
+      },
+      "n": 80,
+      "n_correct_is_a1": 30,
+      "predicted": "a2",
+      "p_a1": 0.375,
+      "agrees_with": [
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 1,
+       "f_SP": 1
+      },
+      "n": 91,
+      "n_correct_is_a1": 50,
+      "predicted": "a1",
+      "p_a1": 0.5494505494505495,
+      "agrees_with": [
+       "MR",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 1,
+       "f_SP": 0
+      },
+      "n": 3,
+      "n_correct_is_a1": 0,
+      "predicted": "a2",
+      "p_a1": 0.0,
+      "agrees_with": [
+       "HAC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 1
+      },
+      "n": 26,
+      "n_correct_is_a1": 16,
+      "predicted": "a1",
+      "p_a1": 0.6153846153846154,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 1,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 0
+      },
+      "n": 7,
+      "n_correct_is_a1": 2,
+      "predicted": "a2",
+      "p_a1": 0.2857142857142857,
+      "agrees_with": [
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 1,
+       "f_SP": 0
+      },
+      "n": 32,
+      "n_correct_is_a1": 14,
+      "predicted": "a2",
+      "p_a1": 0.4375,
+      "agrees_with": [
+       "MR",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 0,
+       "f_SP": 1
+      },
+      "n": 4,
+      "n_correct_is_a1": 3,
+      "predicted": "a1",
+      "p_a1": 0.75,
+      "agrees_with": [
+       "HAC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 1,
+       "f_WC": 0,
+       "f_SP": 0
+      },
+      "n": 136,
+      "n_correct_is_a1": 38,
+      "predicted": "a2",
+      "p_a1": 0.27941176470588236,
+      "agrees_with": [
+       "MR",
+       "WC",
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 1
+      },
+      "n": 5,
+      "n_correct_is_a1": 4,
+      "predicted": "a1",
+      "p_a1": 0.8,
+      "agrees_with": [
+       "SP"
+      ]
+     },
+     {
+      "codes": {
+       "f_MR": 0,
+       "f_HAC": 0,
+       "f_WC": 0,
+       "f_SP": 0
+      },
+      "n": 287,
+      "n_correct_is_a1": 83,
+      "predicted": "a2",
+      "p_a1": 0.289198606271777,
+      "agrees_with": [
+       "MR",
+       "HAC",
+       "WC",
+       "SP"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "expected_relations": {
+  "row4_vs_MR": {
+   "row4": 838,
+   "MR": 838,
+   "equal": true
+  },
+  "rows_1_5_equal": {
+   "row1": 869,
+   "row5": 869,
+   "same_predictions": true
+  },
+  "best_vs_SP": {
+   "best_row": 1,
+   "best": 869,
+   "SP": 869,
+   "best_below_SP": false
+  }
+ }
+}

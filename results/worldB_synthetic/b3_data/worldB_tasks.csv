@@ -1,0 +1,24 @@
+# SYNTHETIC — not a reproduction (stand-in of plan §2.3; invented responses, NOT the MTurk data of the thesis)
+task_id,name,type,answers,correct
+SYNTHETIC-T01,Apple,Logic riddle,o1|o2|o3|o4,o2
+SYNTHETIC-T02,Bakery,Logic riddle,o1|o2|o3|o4|o5|o6|o7,o7
+SYNTHETIC-T03,Blue Yellow Crowns,Logic riddle,o1|o2|o3|o4|o5|o6|o7|o8,o4
+SYNTHETIC-T04,Bobs Coins,Logic riddle,o1|o2|o3|o4,o4
+SYNTHETIC-T05,Boxes of Diamonds,Logic riddle,o1|o2|o3|o4|o5,o2
+SYNTHETIC-T06,Coin,Logic riddle,o1|o2|o3|o4|o5|o6|o7,o3
+SYNTHETIC-T07,Colliding Robots,Logic riddle,o1|o2|o3|o4|o5|o6|o7|o8,o6
+SYNTHETIC-T08,Frog,Logic riddle,o1|o2|o3|o4|o5,o1
+SYNTHETIC-T09,Knapsack 1,NP complete,o1|o2|o3|o4|o5|o6,o6
+SYNTHETIC-T10,Knapsack 2,NP complete,o1|o2|o3|o4|o5|o6,o3
+SYNTHETIC-T11,Letter Dice,Logic riddle,o1|o2|o3|o4|o5|o6,o2
+SYNTHETIC-T12,Magic Potion,Logic riddle,o1|o2|o3|o4|o5|o6|o7|o8,o1
+SYNTHETIC-T13,Pills,Logic riddle,o1|o2|o3|o4|o5|o6,o2
+SYNTHETIC-T14,Race Cars,Logic riddle,o1|o2|o3|o4|o5|o6|o7|o8,o2
+SYNTHETIC-T15,Rush Hour 1,P-space complete,o1|o2|o3|o4|o5|o6,o1
+SYNTHETIC-T16,Rush Hour 2,P-space complete,o1|o2|o3|o4|o5|o6,o5
+SYNTHETIC-T17,Rush Hour 3,P-space complete,o1|o2|o3|o4|o5|o6,o2
+SYNTHETIC-T18,Rush Hour 4,P-space complete,o1|o2|o3|o4|o5|o6,o1
+SYNTHETIC-T19,The Hats Game,Logic riddle,o1|o2|o3|o4|o5|o6|o7,o1
+SYNTHETIC-T20,Three Robots,Logic riddle,o1|o2|o3|o4|o5|o6|o7|o8|o9|o10|o11|o12,o6
+SYNTHETIC-T21,Traveler,Logic riddle,o1|o2|o3|o4,o3
+SYNTHETIC-T22,Wine Barrels,Logic riddle,o1|o2|o3|o4|o5|o6,o5

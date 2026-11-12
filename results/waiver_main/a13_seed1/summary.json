@@ -1,0 +1,595 @@
+{
+ "step": "A13 single LOO (AMP BR+RF, DAP RF)",
+ "header": {
+  "written": "2026-11-11T15:06:17Z",
+  "argv": [
+   "scripts/run_a13_loo.py",
+   "--build",
+   "waiver_main",
+   "--seed",
+   "1",
+   "--n-jobs",
+   "4",
+   "--runs-root",
+   "runs"
+  ],
+  "data": {
+   "kind": "real",
+   "build": "waiver_main",
+   "build_dir": "build/worldA/waiver_main",
+   "gate": {
+    "build": "waiver_main",
+    "cases_sha256": "c237695153557e02862adf8f823098f849831a98ed6e737595b9d6950794635c",
+    "status": "waived",
+    "role": "primary",
+    "date": "2026-11-11",
+    "decided_by": "project owner",
+    "reference": "docs/RULE_BASELINE_CHECK.md",
+    "amendment": "AM17"
+   },
+   "manifest_status": "hypothesis \u2014 used with the rule-baseline differences documented (NBA and NFL rule-baseline counts differ from the thesis-reported counts)",
+   "manifest_created": "2026-11-11T00:37:57+00:00",
+   "limit": null,
+   "n_cases": 1209,
+   "instance_seed": 0,
+   "instance_log": {
+    "amax_tie": 21,
+    "amin_tie": 21,
+    "hac_tie": 7,
+    "single_subset": 0,
+    "cases_with_imputed_CAmin": 169,
+    "cases_with_imputed_CAmax": 0,
+    "cases_with_subset_amax_ties": 62,
+    "cases_with_subset_amin_ties": 62,
+    "nan_features": {},
+    "non_binary_cases": 0
+   },
+   "rule_baselines": {
+    "SP": {
+     "recomputed": 869,
+     "n": 1209,
+     "rate": 0.7187758478081059,
+     "thesis": 864,
+     "difference": 5
+    },
+    "MR": {
+     "recomputed": 838,
+     "n": 1209,
+     "rate": 0.6931348221670802,
+     "thesis": 831,
+     "difference": 7
+    },
+    "WC": {
+     "recomputed": 831,
+     "n": 1209,
+     "rate": 0.6873449131513648,
+     "thesis": 830,
+     "difference": 1
+    },
+    "HAC": {
+     "recomputed": 767,
+     "n": 1209,
+     "rate": 0.6344086021505376,
+     "thesis": 774,
+     "difference": -7
+    },
+    "DA": {
+     "recomputed": 368,
+     "n": 1209,
+     "rate": 0.304383788254756,
+     "thesis": 372,
+     "difference": -4
+    }
+   },
+   "rule_baselines_by_domain": {
+    "all": {
+     "SP": {
+      "recomputed": 869,
+      "n": 1209,
+      "thesis": 864,
+      "thesis_n": 1209
+     },
+     "MR": {
+      "recomputed": 838,
+      "n": 1209,
+      "thesis": 831,
+      "thesis_n": 1209
+     },
+     "WC": {
+      "recomputed": 831,
+      "n": 1209,
+      "thesis": 830,
+      "thesis_n": 1209
+     },
+     "HAC": {
+      "recomputed": 767,
+      "n": 1209,
+      "thesis": 774,
+      "thesis_n": 1209
+     },
+     "DA": {
+      "recomputed": 368,
+      "n": 1209,
+      "thesis": 372,
+      "thesis_n": 1209
+     }
+    },
+    "General": {
+     "SP": {
+      "recomputed": 413,
+      "n": 500,
+      "thesis": 413,
+      "thesis_n": 500
+     },
+     "MR": {
+      "recomputed": 385,
+      "n": 500,
+      "thesis": 385,
+      "thesis_n": 500
+     },
+     "WC": {
+      "recomputed": 380,
+      "n": 500,
+      "thesis": 380,
+      "thesis_n": 500
+     },
+     "HAC": {
+      "recomputed": 338,
+      "n": 500,
+      "thesis": 338,
+      "thesis_n": 500
+     },
+     "DA": {
+      "recomputed": 111,
+      "n": 500,
+      "thesis": 108,
+      "thesis_n": 500
+     }
+    },
+    "NBA": {
+     "SP": {
+      "recomputed": 260,
+      "n": 393,
+      "thesis": 258,
+      "thesis_n": 393
+     },
+     "MR": {
+      "recomputed": 256,
+      "n": 393,
+      "thesis": 252,
+      "thesis_n": 393
+     },
+     "WC": {
+      "recomputed": 252,
+      "n": 393,
+      "thesis": 253,
+      "thesis_n": 393
+     },
+     "HAC": {
+      "recomputed": 230,
+      "n": 393,
+      "thesis": 237,
+      "thesis_n": 393
+     },
+     "DA": {
+      "recomputed": 137,
+      "n": 393,
+      "thesis": 142,
+      "thesis_n": 393
+     }
+    },
+    "NFL": {
+     "SP": {
+      "recomputed": 112,
+      "n": 212,
+      "thesis": 109,
+      "thesis_n": 212
+     },
+     "MR": {
+      "recomputed": 114,
+      "n": 212,
+      "thesis": 111,
+      "thesis_n": 212
+     },
+     "WC": {
+      "recomputed": 117,
+      "n": 212,
+      "thesis": 114,
+      "thesis_n": 212
+     },
+     "HAC": {
+      "recomputed": 131,
+      "n": 212,
+      "thesis": 131,
+      "thesis_n": 212
+     },
+     "DA": {
+      "recomputed": 99,
+      "n": 212,
+      "thesis": 101,
+      "thesis_n": 212
+     }
+    },
+    "Politics": {
+     "SP": {
+      "recomputed": 84,
+      "n": 104,
+      "thesis": 84,
+      "thesis_n": 104
+     },
+     "MR": {
+      "recomputed": 83,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "WC": {
+      "recomputed": 82,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "HAC": {
+      "recomputed": 68,
+      "n": 104,
+      "thesis": 68,
+      "thesis_n": 104
+     },
+     "DA": {
+      "recomputed": 21,
+      "n": 104,
+      "thesis": 21,
+      "thesis_n": 104
+     }
+    }
+   }
+  },
+  "hyper": {
+   "rf_n_estimators": 100,
+   "knn_k": 5,
+   "lr_solver": "lbfgs",
+   "lr_max_iter": 10000,
+   "scaling": "none",
+   "seed": 1
+  },
+  "settings": {
+   "lr_max_iter": 10000,
+   "technique_tie_rule": "first_in_table_order",
+   "classifier_seed": 1,
+   "note": "AM18 settings (LR max_iter 10000 + convergence count; technique tie = first in table order; RF seed 0 primary): defaults of this implementation (docs/RECONSTRUCTION_PLAN.md, appendix)"
+  },
+  "versions": {
+   "numpy": "2.5.3",
+   "scikit-learn": "1.9.1",
+   "scikit-multilearn": "0.2.0"
+  },
+  "code_fingerprint": "29e077bc08887bd6cbf0c48bbaadaef02a81a5e23d97842f848b0057a2c6f890",
+  "n_jobs": 4
+ },
+ "complete": true,
+ "AMP": {
+  "approach": "AMP",
+  "protocol": "loo",
+  "n": 1209,
+  "successes": 860,
+  "rate": 0.7113316790736146,
+  "thesis_successes": 975,
+  "difference": -115,
+  "nan_in_outputs": 0,
+  "techniques": {
+   "BR+RF": 1209
+  },
+  "ties": {
+   "tied_rows": 144,
+   "rounding_tie_rows": 0
+  },
+  "lr_not_converged": 0,
+  "domains": {
+   "General": {
+    "n": 500,
+    "successes": 407,
+    "rate": 0.814,
+    "thesis_successes": 416,
+    "difference": -9
+   },
+   "NBA": {
+    "n": 393,
+    "successes": 254,
+    "rate": 0.6463104325699746,
+    "thesis_successes": 362,
+    "difference": -108
+   },
+   "NFL": {
+    "n": 212,
+    "successes": 121,
+    "rate": 0.5707547169811321,
+    "thesis_successes": 117,
+    "difference": 4
+   },
+   "Politics": {
+    "n": 104,
+    "successes": 78,
+    "rate": 0.75,
+    "thesis_successes": 80,
+    "difference": -2
+   },
+   "all": {
+    "n": 1209,
+    "successes": 860,
+    "rate": 0.7113316790736146
+   }
+  },
+  "selection": {
+   "SP": {
+    "n_selected": 375,
+    "p_selected": 0.31017369727047145,
+    "n_selected_success": 268,
+    "p_success_given_selected": 0.7146666666666667,
+    "method_successes": 869,
+    "p_success": 0.7187758478081059,
+    "pre": -0.014611764705882371,
+    "z": -0.1769896515704059,
+    "p": 0.5702417409469367,
+    "thesis_n_selected": 422,
+    "thesis_n_selected_success": 351,
+    "thesis_p_success_given_selected": 0.8317535545023697
+   },
+   "MR": {
+    "n_selected": 318,
+    "p_selected": 0.2630272952853598,
+    "n_selected_success": 231,
+    "p_success_given_selected": 0.7264150943396226,
+    "method_successes": 838,
+    "p_success": 0.6931348221670802,
+    "pre": 0.10845242333316367,
+    "z": 1.2868198931505175,
+    "p": 0.09907853575765557,
+    "thesis_n_selected": 268,
+    "thesis_n_selected_success": 222,
+    "thesis_p_success_given_selected": 0.8283582089552238
+   },
+   "WC": {
+    "n_selected": 222,
+    "p_selected": 0.18362282878411912,
+    "n_selected_success": 163,
+    "p_success_given_selected": 0.7342342342342343,
+    "method_successes": 831,
+    "p_success": 0.6873449131513648,
+    "pre": 0.1499713999714,
+    "z": 1.5070592289032525,
+    "p": 0.06589773806689661,
+    "thesis_n_selected": 185,
+    "thesis_n_selected_success": 149,
+    "thesis_p_success_given_selected": 0.8054054054054054
+   },
+   "HAC": {
+    "n_selected": 234,
+    "p_selected": 0.1935483870967742,
+    "n_selected_success": 165,
+    "p_success_given_selected": 0.7051282051282052,
+    "method_successes": 767,
+    "p_success": 0.6344086021505376,
+    "pre": 0.19343891402714947,
+    "z": 2.246286912443127,
+    "p": 0.012342818157234333,
+    "thesis_n_selected": 180,
+    "thesis_n_selected_success": 127,
+    "thesis_p_success_given_selected": 0.7055555555555556
+   },
+   "DA": {
+    "n_selected": 60,
+    "p_selected": 0.04962779156327544,
+    "n_selected_success": 33,
+    "p_success_given_selected": 0.55,
+    "method_successes": 368,
+    "p_success": 0.304383788254756,
+    "pre": 0.3530915576694412,
+    "z": 4.134633771107905,
+    "p": 1.7776056069352856e-05,
+    "thesis_n_selected": 154,
+    "thesis_n_selected_success": 126,
+    "thesis_p_success_given_selected": 0.8181818181818182
+   }
+  },
+  "selection_total": 1209,
+  "versus_rules": {
+   "SP": {
+    "method_successes": 869,
+    "approach_only_correct": 52,
+    "method_only_correct": 61,
+    "mcnemar_chi2": 0.5663716814159292,
+    "mcnemar_p": 0.45170432656693205,
+    "proportion_z": -0.40547450296235615,
+    "proportion_p": 0.6574356217161867,
+    "thesis_discordant": [
+     159,
+     48
+    ]
+   },
+   "MR": {
+    "method_successes": 838,
+    "approach_only_correct": 93,
+    "method_only_correct": 71,
+    "mcnemar_chi2": 2.6890243902439024,
+    "mcnemar_p": 0.10104166257959152,
+    "proportion_z": 0.9783984092345931,
+    "proportion_p": 0.16393865733552482,
+    "thesis_discordant": [
+     201,
+     57
+    ]
+   },
+   "WC": {
+    "method_successes": 831,
+    "approach_only_correct": 97,
+    "method_only_correct": 68,
+    "mcnemar_chi2": 4.751515151515152,
+    "mcnemar_p": 0.02927250918630439,
+    "proportion_z": 1.2861367174803349,
+    "proportion_p": 0.09919767587948702,
+    "thesis_discordant": [
+     195,
+     50
+    ]
+   },
+   "HAC": {
+    "method_successes": 767,
+    "approach_only_correct": 200,
+    "method_only_correct": 107,
+    "mcnemar_chi2": 27.570032573289904,
+    "mcnemar_p": 1.5150802170775707e-07,
+    "proportion_z": 4.031151113381869,
+    "proportion_p": 2.7752170798879886e-05,
+    "thesis_discordant": [
+     279,
+     78
+    ]
+   },
+   "DA": {
+    "method_successes": 368,
+    "approach_only_correct": 771,
+    "method_only_correct": 279,
+    "mcnemar_chi2": 229.60095238095238,
+    "mcnemar_p": 7.283976522392904e-52,
+    "proportion_z": 20.013386700482723,
+    "proportion_p": 2.105237916120359e-89,
+    "thesis_discordant": [
+     782,
+     179
+    ]
+   }
+  },
+  "technique": "BR+RF",
+  "seconds": 592.9247217178345,
+  "fit_seconds": 592.8498644828796,
+  "n_from_checkpoint": 0,
+  "n_features": 27
+ },
+ "DAP": {
+  "approach": "DAP",
+  "protocol": "loo",
+  "n": 1209,
+  "successes": 857,
+  "rate": 0.7088502894954508,
+  "thesis_successes": 982,
+  "difference": -125,
+  "nan_in_outputs": 0,
+  "techniques": {
+   "RF": 1209
+  },
+  "ties": {
+   "half_rows": 15
+  },
+  "lr_not_converged": 0,
+  "domains": {
+   "General": {
+    "n": 500,
+    "successes": 420,
+    "rate": 0.84,
+    "thesis_successes": 426,
+    "difference": -6
+   },
+   "NBA": {
+    "n": 393,
+    "successes": 240,
+    "rate": 0.6106870229007634,
+    "thesis_successes": 357,
+    "difference": -117
+   },
+   "NFL": {
+    "n": 212,
+    "successes": 122,
+    "rate": 0.5754716981132075,
+    "thesis_successes": 123,
+    "difference": -1
+   },
+   "Politics": {
+    "n": 104,
+    "successes": 75,
+    "rate": 0.7211538461538461,
+    "thesis_successes": 76,
+    "difference": -1
+   },
+   "all": {
+    "n": 1209,
+    "successes": 857,
+    "rate": 0.7088502894954508
+   }
+  },
+  "versus_rules": {
+   "SP": {
+    "method_successes": 869,
+    "approach_only_correct": 93,
+    "method_only_correct": 105,
+    "mcnemar_chi2": 0.6111111111111112,
+    "mcnemar_p": 0.43436976365621416,
+    "proportion_z": -0.5399281260147153,
+    "proportion_p": 0.7053766998594089,
+    "thesis_discordant": [
+     189,
+     71
+    ]
+   },
+   "MR": {
+    "method_successes": 838,
+    "approach_only_correct": 129,
+    "method_only_correct": 110,
+    "mcnemar_chi2": 1.3556485355648535,
+    "mcnemar_p": 0.24429305432620296,
+    "proportion_z": 0.8439714379647127,
+    "proportion_p": 0.19934268316524617,
+    "thesis_discordant": [
+     225,
+     74
+    ]
+   },
+   "WC": {
+    "method_successes": 831,
+    "approach_only_correct": 141,
+    "method_only_correct": 115,
+    "mcnemar_chi2": 2.44140625,
+    "mcnemar_p": 0.11817024586533484,
+    "proportion_z": 1.1517383951703446,
+    "proportion_p": 0.12471429481116802,
+    "thesis_discordant": [
+     226,
+     74
+    ]
+   },
+   "HAC": {
+    "method_successes": 767,
+    "approach_only_correct": 236,
+    "method_only_correct": 146,
+    "mcnemar_chi2": 20.73560209424084,
+    "mcnemar_p": 5.2726522352028e-06,
+    "proportion_z": 3.8973319160775426,
+    "proportion_p": 4.862914006096828e-05,
+    "thesis_discordant": [
+     299,
+     91
+    ]
+   },
+   "DA": {
+    "method_successes": 368,
+    "approach_only_correct": 731,
+    "method_only_correct": 242,
+    "mcnemar_chi2": 244.75231243576567,
+    "mcnemar_p": 3.618517213175445e-55,
+    "proportion_z": 19.890639268070267,
+    "proportion_p": 2.4522926960133316e-88,
+    "thesis_discordant": [
+     763,
+     153
+    ]
+   }
+  },
+  "target_rate_code1": 0.544251447477254,
+  "predicted_rate_code1": 0.5707196029776674,
+  "technique": "RF",
+  "seconds": 106.47546982765198,
+  "fit_seconds": 106.42001843452454,
+  "n_from_checkpoint": 0,
+  "n_features": 32
+ },
+ "finished": "2026-11-11T15:17:57Z"
+}

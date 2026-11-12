@@ -1,0 +1,102 @@
+{
+ "_marker": "SYNTHETIC \u2014 not a reproduction",
+ "written": "2026-11-12T09:55:42Z",
+ "round_trip_exact": true,
+ "table_4_1_all_match": true,
+ "n_tasks": 22,
+ "n_responses": 2490,
+ "oq34": "2490 responses = the sum of TH Table 4.1 (and MCF-arXiv)",
+ "n_subsets_over_30_seeds": [
+  77
+ ],
+ "subset_sizes_match_printed_averages": true,
+ "ps_sum_max_abs_deviation_from_1": 3.3306690738754696e-16,
+ "ps_min": 0.0,
+ "confidence_min_max_mean": [
+  0.21997053698072075,
+  0.9210613972652355,
+  0.649813089953298
+ ],
+ "unweighted_mean_solver_share": 0.3032751095882945,
+ "weighted_mean_solver_share": 0.27991967871485945,
+ "feature_oracle_a4_like": {
+  "n_instances_over_30_seeds": 15,
+  "n_seeds_with_one": 12,
+  "examples": [
+   [
+    0,
+    "SYNTHETIC-T10#sub2",
+    "o5",
+    1
+   ],
+   [
+    2,
+    "SYNTHETIC-T10#sub2",
+    "o5",
+    1
+   ],
+   [
+    3,
+    "SYNTHETIC-T10#sub3",
+    "o5",
+    2
+   ],
+   [
+    6,
+    "SYNTHETIC-T10#sub1",
+    "o5",
+    1
+   ],
+   [
+    10,
+    "SYNTHETIC-T10#sub2",
+    "o5",
+    1
+   ],
+   [
+    10,
+    "SYNTHETIC-T10#sub3",
+    "o5",
+    1
+   ],
+   [
+    10,
+    "SYNTHETIC-T13#sub1",
+    "o3",
+    1
+   ],
+   [
+    13,
+    "SYNTHETIC-T10#sub2",
+    "o5",
+    1
+   ],
+   [
+    14,
+    "SYNTHETIC-T10#sub2",
+    "o5",
+    1
+   ],
+   [
+    18,
+    "SYNTHETIC-T10#sub1",
+    "o5",
+    2
+   ]
+  ]
+ },
+ "parameters": {
+  "lure_share_mean": 0.4,
+  "lure_share_concentration": 10.0,
+  "distractor_alpha": 2.0,
+  "conf_base": 0.6,
+  "conf_popularity_slope": 0.2,
+  "conf_solver_bonus": 0.0,
+  "conf_concentration": 16.0,
+  "ps_own_shift": 0.3,
+  "ps_solver_lure_shift": 0.5,
+  "ps_concentration": 20.0,
+  "ps_onehot_rate": 0.05,
+  "ps_floor": 1e-06
+ }
+}

@@ -1,0 +1,38 @@
+A13 LOO, build waiver_main, classifier seed 4, 1209 cases
+
+rule baselines (recomputed / thesis): SP 869/864, MR 838/831, WC 831/830, HAC 767/774, DA 368/372
+
+AMP LOO (BR+RF), 27 features
+  successes 850/1209 = 0.703   thesis 975/1209 = 0.806   difference -125
+    General    409/500  = 0.818   thesis  416 = 0.832   diff -7
+    NBA        249/393  = 0.634   thesis  362 = 0.921   diff -113
+    NFL        117/212  = 0.552   thesis  117 = 0.552   diff +0
+    Politics    75/104  = 0.721   thesis   80 = 0.769   diff -5
+  method   selected (thesis)   correct when selected (thesis)   P(succ|sel) (thesis)   p
+    SP     372 ( 422)     265 ( 351)   0.712 (0.832)   0.61
+    MR     302 ( 268)     223 ( 222)   0.738 (0.828)   0.044
+    WC     224 ( 185)     153 ( 149)   0.683 (0.805)   0.56
+    HAC    250 ( 180)     180 ( 127)   0.720 (0.706)   0.0025
+    DA      61 ( 154)      29 ( 126)   0.475 (0.818)   0.0018
+    selection counts sum to 1209
+  versus rule: (approach only, rule only) correct, thesis pair, McNemar p
+    SP   (52, 71)   thesis (159, 48)   p = 0.105
+    MR   (92, 80)   thesis (201, 57)   p = 0.402
+    WC   (90, 71)   thesis (195, 50)   p = 0.156
+    HAC  (194, 111)   thesis (279, 78)   p = 2.66e-06
+    DA   (762, 280)   thesis (782, 179)   p = 3.25e-50
+  argmax / 0.5 ties: {'tied_rows': 163, 'rounding_tie_rows': 0}; fits not converged: 0; NaN in outputs: 0
+
+DAP LOO (RF), 32 features
+  successes 860/1209 = 0.711   thesis 982/1209 = 0.812   difference -122
+    General    421/500  = 0.842   thesis  426 = 0.852   diff -5
+    NBA        241/393  = 0.613   thesis  357 = 0.908   diff -116
+    NFL        122/212  = 0.575   thesis  123 = 0.580   diff -1
+    Politics    76/104  = 0.731   thesis   76 = 0.731   diff +0
+  versus rule: (approach only, rule only) correct, thesis pair, McNemar p
+    SP   (91, 100)   thesis (189, 71)   p = 0.563
+    MR   (129, 107)   thesis (225, 74)   p = 0.172
+    WC   (145, 116)   thesis (226, 74)   p = 0.0831
+    HAC  (241, 148)   thesis (299, 91)   p = 3.09e-06
+    DA   (734, 242)   thesis (763, 153)   p = 1.17e-55
+  argmax / 0.5 ties: {'half_rows': 22}; fits not converged: 0; NaN in outputs: 0

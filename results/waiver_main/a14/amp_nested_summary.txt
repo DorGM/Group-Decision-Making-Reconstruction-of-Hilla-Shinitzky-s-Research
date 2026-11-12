@@ -1,0 +1,24 @@
+AMP nested CV (10-fold x inner LOO)
+  successes 851/1209 = 0.704   thesis 935/1209 = 0.773   difference -84
+    General    414/500  = 0.828   thesis  412 = 0.824   diff +2
+    NBA        248/393  = 0.631   thesis  361 = 0.919   diff -113
+    NFL        120/212  = 0.566   thesis  100 = 0.472   diff +20
+    Politics    69/104  = 0.663   thesis   62 = 0.596   diff +7
+  method   selected (thesis)   correct when selected (thesis)   P(succ|sel) (thesis)   p
+    SP     428 ( 349)     295 ( 287)   0.689 (0.822)   0.91
+    MR     185 ( 244)     143 ( 200)   0.773 (0.820)   0.0093
+    WC     322 ( 241)     263 ( 201)   0.817 (0.834)   2.7e-07
+    HAC    171 ( 132)     109 (  93)   0.637 (0.705)   0.47
+    DA     103 ( 243)      41 ( 154)   0.398 (0.634)   0.019
+    selection counts sum to 1209
+  versus rule: (approach only, rule only) correct, thesis pair, McNemar p
+    SP   (68, 86)   thesis -   p = 0.171
+    MR   (114, 101)   thesis -   p = 0.413
+    WC   (115, 95)   thesis -   p = 0.19
+    HAC  (204, 120)   thesis -   p = 4.01e-06
+    DA   (741, 258)   thesis -   p = 1.65e-52
+  argmax / 0.5 ties: {'tied_rows': 81, 'rounding_tie_rows': 0}; fits not converged: 0; NaN in outputs: 0
+  selected by fold: ['LP+LR', 'BR+RF', 'LP+LR', 'LP+LR', 'CC+RF', 'LP+LR', 'BR+RF', 'BR+RF', 'BR+RF', 'BR+RF']
+  tied folds: []
+  successes over every tie resolution: 851..851
+  fits not converged: {'BR+KNN': 0, 'BR+LR': 0, 'BR+RF': 0, 'CC+KNN': 0, 'CC+LR': 0, 'CC+RF': 0, 'LP+KNN': 0, 'LP+LR': 0, 'LP+RF': 0, 'test_refits': 0}

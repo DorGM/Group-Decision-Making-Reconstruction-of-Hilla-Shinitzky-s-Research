@@ -1,0 +1,264 @@
+# World-A build switches and named scenarios (steps A8/A9; plan §2.1.1 D1-D6).
+# This file only ADDS switches; config/defaults.yaml is unchanged.
+#
+# `switches` gives, for each switch, the value the PLAN prescribes (or, where
+# the plan is silent, the value that drops nothing) and the alternatives.
+# `scenarios` are named sets of overrides. Every scenario is a candidate
+# configuration ("hypothesis") of the data-set construction; none is
+# established as the configuration of the thesis data set:
+#   * every 1209-case scenario gives the SDs 35.6 / 23.7; the thesis prints
+#     35.5 / 23.8;
+#   * on every scenario some rule-baseline counts differ from the
+#     thesis-reported counts (plan Step D5; docs/RULE_BASELINE_CHECK.md).
+# Each scenario has a `status`; it is copied into the frozen manifest
+# together with the rule-baseline check of the build.
+#
+# Tags: [PLAN] value named in docs/RECONSTRUCTION_PLAN.md; [EVIDENCE] alternative
+# supported by a check against a printed thesis number (see
+# docs/IMPLEMENTATION_DECISIONS.md); [HYPOTHESIS] a candidate selection rule
+# that yields a thesis-reported case count, with no direct evidence; [SILENT] the plan does not
+# cover the point, the value is a placeholder.
+#
+# Names: the `h1209_*` scenarios were first called `best_evidence_*`. The old
+# names still resolve (deprecated_aliases, bottom).
+
+switches:
+
+  # ---- order (Step D6, OQ16) ----
+  domain_order:
+    default: [General, NBA, NFL, Politics]            # [PLAN]
+  within_domain_order:
+    default: source_file_order                        # [PLAN]
+    options: [source_file_order]
+
+  # ---- sources ----
+  nfl_source:                                         # OQ1 / OQ1b / D21
+    default: rutchick_s1                              # [PLAN]
+    options: [rutchick_s1, lee2018]                   # lee2018 cannot be built: no outcomes in the folder
+  lee_outcomes_file:                                  # [SILENT] CSV "case_id,winner" from an external source; none exists
+    default: null
+  lee_expert_only:                                    # OQ4
+    default: false                                    # [PLAN]
+  rutchick_version:                                   # OQ44
+    default: revised                                  # [PLAN]
+    options: [revised, original]                      # [EVIDENCE] originals saved 2020-06-17; REVISED saved 2022-07-18, after the plan's 3 Apr 2022 bound; open question (AM8)
+  nfl_original_conf:                                  # [SILENT] only used with rutchick_version: original
+    default: recode_to_revised                        # makes the original file equal to REVISED for confidence (NFL HAC 131 = thesis)
+    # The other treatments are sensitivity switches. None is used in a base
+    # scenario: the rule-baseline check does not separate them (HAC 131 or 132, WC 117 in all).
+    options: [recode_to_revised, domain_minmax_1_7, column_minmax_1_7, clip, all_likert_minmax_1_7, c_over_7]
+
+  # ---- response level (Steps D1-D2) ----
+  martinie_confidence:                                # OQ2
+    default: a_abs_p_minus_50_over_50                 # [PLAN]
+    options: [a_abs_p_minus_50_over_50, b_max_p_100_minus_p_over_100, c_p_if_true_else_100_minus_p]
+  likert_confidence:                                  # OQ2
+    default: a_c_minus_1_over_4                       # [PLAN]
+    options: [a_c_minus_1_over_4, b_c_over_5]
+  martinie_drop_vote_inconsistent:                    # OQ4
+    default: true                                     # [PLAN]
+    options: [true, false]                            # [EVIDENCE] false matches Table A.2 and gives General = 500
+  martinie_drop_cheaters:                             # OQ4; no effect: the 41 workers are already absent and not identifiable
+    default: true                                     # [PLAN]
+  complete_responses_only:                            # Step D2
+    default: true                                     # [PLAN]
+    options: [true, false]                            # false = votes only; statistics only, no Case objects
+  answer_coding:                                      # OQ5
+    default: a_natural_source_coding                  # [PLAN] a1 = True / home team / first-listed candidate
+    # NFL: a1 = the SECOND-NAMED team of the header, which is usually but not
+    # always the home team; no schedule file is part of the data.
+    options: [a_natural_source_coding, b_raw_file_option_order, c_random_per_case_seeded]
+  answer_coding_by_domain:                            # [SILENT] per-domain override of answer_coding, e.g. {NBA: b_raw_file_option_order}
+    default: {}                                       # empty = one coding for all domains. The answer order is also the tie order (decision S1)
+  answer_coding_seed:
+    default: 0
+
+  # ---- case level (Step D3) ----
+  drop_0_or_100_percent_correct:                      # TH p.43
+    default: true                                     # [PLAN]
+  min_n:                                              # OQ4, ladder switch 4
+    default: null                                     # [PLAN]
+    options: [null, 10]
+
+  # ---- candidate selection rules for the case counts (not in the plan) ----
+  nfl_column_matching:                                # [HYPOTHESIS] H9
+    default: positional                               # keeps 216
+    options: [positional, token, exact_prefix]        # token: drop the 4 games whose header tokens disagree; exact_prefix: drop 9
+  elections_column_matching:                          # [HYPOTHESIS] H9
+    default: positional                               # keeps 110
+    # name_strict: X_pred/X_conf/X_agree_1 (drops 6); name_loose also accepts
+    # X_agree; pred_agree_names: only X_pred/X_agree_1 must match (drops
+    # TX_sen, CA_45th, IL_gub, SC_gub in the original file).
+    # Sensitivity of the header rule: "exactly 6" needs
+    # exact name matching, keeping the second AK_gub block, and not taking
+    # the first (mislabelled) NY_gub_conf column for NY_gub.
+    options: [positional, name_strict, name_loose, pred_agree_names]
+  elections_drop_third_option_races_min_votes:        # [HYPOTHESIS] AM14
+    default: null                                     # null = off. 6 drops MS_sen1, ME_sen, NM_sen, WI_1, TX_32, AK_gub (Alaska); 5 and 7 give other counts
+  nba_extra_exclusion:                                # [HYPOTHESIS] H10
+    default: none
+    options: [none, drop_games, drop_participants]
+  nba_drop_games:                                     # used by nba_extra_exclusion: drop_games
+    default: [W2_9, W2_10, W2_17]                     # the three games with 1/61 correct
+  nba_drop_participants:                              # used by nba_extra_exclusion: drop_participants
+    default: [45, 114]                                # the lone correct voters of those three games
+
+  # ---- elections with 3-4 options (46 of 110 races; the plan assumes binary; AM15) ----
+  elections_options:                                  # [SILENT] H12
+    default: all_offered_options                      # keeps every vote; cases have 2-4 answers
+    # binary_drop_other_votes: the answers are options 1 and 2; votes for
+    # options 3-4 are dropped; races won by option 3 cannot be cases.
+    options: [all_offered_options, binary_drop_other_votes, drop_multi_option_races]
+  elections_answer_set:                               # [SILENT] only when elections_options keeps all options
+    default: observed_codes                           # the codes that occur in the workbook (votes, winner; always 1 and 2)
+    options: [observed_codes, offered_qsf]            # offered_qsf: the options offered in the survey (.qsf), also when nobody chose them
+  elections_ps_other_answers:                         # [SILENT] predicted support of the answers a voter did not choose, >2 answers only
+    default: complement_each                          # Rutchick's own SP formula: 100 - x for EVERY other option (ps does not sum to 1)
+    options: [complement_each, split_evenly]          # split_evenly: remainder split evenly; invented for this implementation, kept as a switch
+
+
+scenarios:
+
+  plan_default:
+    status: "hypothesis (plan defaults as written; rule-baseline counts differ from the thesis-reported counts)"
+    description: "Plan defaults as written: Martinie (a) with the authors' vote-inconsistency exclusion, REVISED Rutchick files, complete responses, 0/100% filter."
+    overrides: {}
+
+  s2_stated_filters_only:
+    status: "hypothesis (stated filters only; 1222 cases, not the thesis counts; rule-baseline counts differ from the thesis-reported counts)"
+    description: "Stated filters only, Martinie all responses with confidence (c) (matches Table A.2 features 1-17)."
+    overrides:
+      martinie_confidence: c_p_if_true_else_100_minus_p
+      martinie_drop_vote_inconsistent: false
+
+  s1_votes_only:
+    status: "hypothesis (statistics only)"
+    description: "As s2 but a response needs only a vote (scenario S1). Statistics only."
+    overrides:
+      martinie_confidence: c_p_if_true_else_100_minus_p
+      martinie_drop_vote_inconsistent: false
+      complete_responses_only: false
+
+  # ---- h1209_*: three count hypotheses that give 500/393/212/104 --------------
+  # (formerly best_evidence_*).
+  h1209_nba_games:
+    status: "hypothesis (three count hypotheses; SDs differ from the printed SDs; rule-baseline counts differ from the thesis-reported counts)"
+    description: "Scenario S3: Martinie all responses + (c); original Rutchick files with the NFL confidence recoded to 1-5 (= REVISED); HYPOTHESES: the 4 NFL games and 6 election races with mismatched header names dropped; the three NBA games with 1/61 correct dropped."
+    overrides: &h1209
+      martinie_confidence: c_p_if_true_else_100_minus_p
+      martinie_drop_vote_inconsistent: false
+      rutchick_version: original
+      nfl_column_matching: token
+      elections_column_matching: name_strict
+      nba_extra_exclusion: drop_games
+
+  h1209_nba_participants:
+    status: "hypothesis (three count hypotheses; SDs differ from the printed SDs; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games, but NBA participants 45 and 114 are removed instead (the three games then fall to the 0% filter)."
+    overrides:
+      <<: *h1209
+      nba_extra_exclusion: drop_participants
+
+  h1209_revised_files:
+    status: "hypothesis (three count hypotheses; SDs differ from the printed SDs; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games with the REVISED Rutchick files (strict name matching)."
+    overrides:
+      <<: *h1209
+      rutchick_version: revised
+
+  h1209_revised_name_loose:
+    status: "hypothesis (105 Politics cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_revised_files, but TX_sen_agree (REVISED header) is accepted."
+    overrides:
+      <<: *h1209
+      rutchick_version: revised
+      elections_column_matching: name_loose
+
+  s4_martinie_consistent_only:
+    status: "hypothesis (499 General cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games, but with Martinie's vote-inconsistency exclusion (scenario S4)."
+    overrides:
+      <<: *h1209
+      martinie_drop_vote_inconsistent: true
+
+  s5_nfl_votes_only:
+    status: "hypothesis (statistics only)"
+    description: "As h1209_nba_games, but a response needs only a vote (scenario S5). Statistics only."
+    overrides:
+      <<: *h1209
+      complete_responses_only: false
+
+  h1209_no_nba_exclusion:
+    status: "hypothesis (396 NBA cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games without any extra NBA exclusion."
+    overrides:
+      <<: *h1209
+      nba_extra_exclusion: none
+
+  h1209_nfl_exact_prefix:
+    status: "hypothesis (207 NFL cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games, but NFL triples must share the exact header prefix."
+    overrides:
+      <<: *h1209
+      nfl_column_matching: exact_prefix
+
+  h1209_elections_binary:
+    status: "hypothesis (102 Politics cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games, but election votes for options 3-4 are dropped and races won by option 3 cannot be cases."
+    overrides:
+      <<: *h1209
+      elections_options: binary_drop_other_votes
+
+  h1209_elections_two_option_races:
+    status: "hypothesis (60 Politics cases; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games, but only races that offered exactly two options are kept."
+    overrides:
+      <<: *h1209
+      elections_options: drop_multi_option_races
+
+  h1209_min_n_10:
+    status: "hypothesis (three count hypotheses; SDs differ from the printed SDs; rule-baseline counts differ from the thesis-reported counts)"
+    description: "As h1209_nba_games with the N >= 10 filter (ladder switch 4)."
+    overrides:
+      <<: *h1209
+      min_n: 10
+
+  # ---- builds used for the model runs (docs/RULE_BASELINE_CHECK.md, AM17) ----
+  # Not plan defaults. On both, some NBA and NFL rule-baseline counts differ
+  # from the thesis-reported counts; the project owner authorised proceeding
+  # with the differences documented (config/gate_status.yaml).
+  waiver_main:
+    status: "hypothesis — used with the rule-baseline differences documented (NBA and NFL rule-baseline counts differ from the thesis-reported counts)"
+    description: "Build used for the AMP/DAP runs. General: Martinie all responses + (c). NBA: the three 1/61 games dropped. NFL: Rutchick S1 original file, 4 header-token games dropped, confidence recoded to 1-5 (= REVISED). Politics: BINARY (votes for options 3-4 dropped; the two races won by option 3 fall out) minus the four races whose _pred and _agree header names differ (TX_sen, CA_45th, IL_gub, SC_gub). The choice of these four races is not determined by the rule-baseline check: 74% of all 4-race removals give the same Politics agreement."
+    overrides: &waiver
+      martinie_confidence: c_p_if_true_else_100_minus_p
+      martinie_drop_vote_inconsistent: false
+      rutchick_version: original
+      nfl_column_matching: token
+      nba_extra_exclusion: drop_games
+      elections_options: binary_drop_other_votes
+      elections_column_matching: pred_agree_names
+
+  waiver_politics_alt:
+    status: "hypothesis — used with the rule-baseline differences documented (sensitivity build for waiver_main; NBA and NFL rule-baseline counts differ from the thesis-reported counts)"
+    description: "Sensitivity build for waiver_main: identical except Politics, where the races with >= 6 votes for a third or fourth option are dropped (MS_sen1, ME_sen, NM_sen, WI_1, TX_32, AK_gub) instead of the header set; the remaining stray third-option votes are dropped (binary). The threshold 6 was chosen after seeing the counts."
+    overrides:
+      <<: *waiver
+      elections_column_matching: positional
+      elections_drop_third_option_races_min_votes: 6
+
+
+# Old scenario names -> current names. Deprecated: the scenarios are
+# hypotheses, not established configurations. Note that the
+# old builds used nfl_original_conf: domain_minmax_1_7, the even ps split and
+# the .qsf answer set; the current scenarios do not (see docs/IMPLEMENTATION_DECISIONS.md W1-W5).
+deprecated_aliases:
+  best_evidence_nba_games: h1209_nba_games
+  best_evidence_nba_participants: h1209_nba_participants
+  best_evidence_revised_files: h1209_revised_files
+  best_evidence_revised_name_loose: h1209_revised_name_loose
+  best_evidence_no_nba_exclusion: h1209_no_nba_exclusion
+  best_evidence_nfl_exact_prefix: h1209_nfl_exact_prefix
+  best_evidence_elections_binary: h1209_elections_binary
+  best_evidence_elections_two_option_races: h1209_elections_two_option_races
+  best_evidence_min_n_10: h1209_min_n_10

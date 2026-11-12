@@ -1,0 +1,295 @@
+{
+ "_marker": "SYNTHETIC \u2014 not a reproduction",
+ "written": "2026-11-12T10:28:05Z",
+ "step": "B10",
+ "plan": "\u00a75.9, \u00a78 OQ30, \u00a79.3 row B10, T30",
+ "synthetic": true,
+ "real_data_path": "UNTESTED ON REAL DATA",
+ "data": {
+  "n_tasks": 22,
+  "n_responses": 2490,
+  "fingerprint": "9d2e25f82e27898cecde08009ccf626617ac504e389389449e6c1e061d05edcb",
+  "generator_seed": 0
+ },
+ "partition": {
+  "assignment": "random",
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29
+  ],
+  "full_set_of_seeds": true
+ },
+ "options": {
+  "hyper": {
+   "rf_n_estimators": 100,
+   "knn_k": 5,
+   "lr_solver": "lbfgs",
+   "lr_max_iter": 10000,
+   "scaling": "none",
+   "seed": 0
+  },
+  "checked": {
+   "OQ26": {
+    "ensemble": "VotingClassifier_soft_equal_weights",
+    "members": [
+     "LDA",
+     "RF",
+     "XGBClassifier",
+     "LR",
+     "KNN"
+    ],
+    "member_hyperparameters": "defaults",
+    "scaling": "none"
+   },
+   "OQ35": {
+    "bag_knn": "BaggingClassifier(KNeighborsClassifier())_defaults",
+    "svm": "SVC(probability=True)_defaults"
+   },
+   "OQ33": "none",
+   "OQ27": {
+    "prop": "n_true_over_n_supporters",
+    "ties": "chosen_tie_breaker_then_canonical_order",
+    "tie_breaker_percentage": "share_of_77_subsets_where_primary_criterion_tied",
+    "no_supporter_predicted_true": "prop_zero_for_all_then_tie_breaker"
+   }
+  },
+  "majority_rule": "one_for_all_tied_top_answers",
+  "rule_policy": "canonical_first",
+  "tol": 1e-09,
+  "group_by": "subset",
+  "empty_out_group": "drop_from_training_answer_is_unanimous",
+  "standalone_ties": "random"
+ },
+ "versions": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "sklearn": "1.9.1",
+  "xgboost": "3.4.1",
+  "shap": "0.54.1",
+  "statsmodels": "0.15.0"
+ },
+ "partition_used": {
+  "assignment": "random",
+  "seed": 0
+ },
+ "models_trained_on": "all instances of that partition (plan OQ30)",
+ "kernel": {
+  "rows": 150,
+  "background": 50,
+  "nsamples": "auto",
+  "seed": 0
+ },
+ "importance": "mean |SHAP| over the explained instances",
+ "run": {
+  "RP": {
+   "features": "RCR",
+   "n_instances": 2490,
+   "instances_left_out_undefined": 0,
+   "thesis_figure": "TH Fig 5.8 p.82 (MCF Fig 2)",
+   "thesis_ranking": [
+    "dPSv",
+    "PSvD_OG",
+    "PSvD",
+    "ConfD_IG",
+    "PSv",
+    "ChosenMajAns",
+    "ConfD_OG",
+    "ConfD",
+    "PSvD_IG",
+    "ChiSq",
+    "PChiSq_IG",
+    "Conf",
+    "PChiSq_OG",
+    "PChiSq"
+   ],
+   "models": {
+    "xgboost_tree": {
+     "title": "XGBoost, TreeExplainer, log-odds (plan OQ30 (i))",
+     "n_explained": 2490,
+     "base_value": -1.2059818506240845,
+     "run_ranking": [
+      "dPSv",
+      "PSvD_IG",
+      "PSvD_OG",
+      "PChiSq_OG",
+      "ChiSq",
+      "PChiSq_IG",
+      "PSv",
+      "ConfD_IG",
+      "Conf",
+      "PChiSq",
+      "ConfD",
+      "PSvD",
+      "ConfD_OG",
+      "ChosenMajAns"
+     ],
+     "mean_abs_shap": {
+      "ChosenMajAns": 0.07289127391355345,
+      "Conf": 0.41613381251049447,
+      "ConfD": 0.17821501891566327,
+      "ConfD_IG": 0.4208621241378572,
+      "ConfD_OG": 0.1421644252808166,
+      "PSv": 0.5527680656913833,
+      "dPSv": 2.6282909140546233,
+      "PSvD": 0.16930483396325904,
+      "PSvD_IG": 1.6083430754147978,
+      "PSvD_OG": 1.4938006565547044,
+      "ChiSq": 1.2627029812846138,
+      "PChiSq": 0.292954122981367,
+      "PChiSq_IG": 0.9530264860849423,
+      "PChiSq_OG": 1.4927836893201174
+     },
+     "max_abs_shap": 7.575328350067139
+    },
+    "soft_vote_kernel": {
+     "title": "soft-voting ensemble of RP / AP, KernelExplainer, P(True) (plan OQ30 (ii))",
+     "n_explained": 150,
+     "base_value": 0.26176600422201685,
+     "run_ranking": [
+      "dPSv",
+      "PSvD_OG",
+      "PChiSq_OG",
+      "PSvD_IG",
+      "ChiSq",
+      "PSv",
+      "PChiSq_IG",
+      "PSvD",
+      "Conf",
+      "ConfD_IG",
+      "ChosenMajAns",
+      "ConfD_OG",
+      "PChiSq",
+      "ConfD"
+     ],
+     "mean_abs_shap": {
+      "ChosenMajAns": 0.010953971569220166,
+      "Conf": 0.012565322297133915,
+      "ConfD": 0.0011746578370508826,
+      "ConfD_IG": 0.011566603306253021,
+      "ConfD_OG": 0.007903598612710396,
+      "PSv": 0.01799496796243418,
+      "dPSv": 0.15954107930856903,
+      "PSvD": 0.01317371175649961,
+      "PSvD_IG": 0.0771374343065045,
+      "PSvD_OG": 0.11515732729079128,
+      "ChiSq": 0.06217800183403412,
+      "PChiSq": 0.002161795155145424,
+      "PChiSq_IG": 0.017401107934750575,
+      "PChiSq_OG": 0.08104396662973586
+     },
+     "max_abs_shap": 0.5027057942379312
+    }
+   }
+  },
+  "AP": {
+   "features": "ACR",
+   "n_instances": 457,
+   "instances_left_out_undefined": 0,
+   "thesis_figure": "TH Fig 5.9 p.83 (MCF Fig 3)",
+   "thesis_ranking": [
+    "dPS_OG",
+    "AvgConf",
+    "AvgPS_OG",
+    "AvgPS_IG",
+    "dPS",
+    "AvgChiSq",
+    "dPS_IG",
+    "AvgPS",
+    "Support",
+    "IsMajority"
+   ],
+   "models": {
+    "xgboost_tree": {
+     "title": "XGBoost, TreeExplainer, log-odds (plan OQ30 (i))",
+     "n_explained": 457,
+     "base_value": -1.991803526878357,
+     "run_ranking": [
+      "AvgChiSq",
+      "dPS_IG",
+      "AvgPS_OG",
+      "AvgPS_IG",
+      "AvgConf",
+      "AvgPS",
+      "dPS",
+      "Support",
+      "dPS_OG",
+      "IsMajority"
+     ],
+     "mean_abs_shap": {
+      "IsMajority": 0.0,
+      "Support": 0.25605506545311774,
+      "AvgPS": 0.3898962648662879,
+      "AvgPS_IG": 1.1703300893783601,
+      "AvgPS_OG": 1.5686581409872555,
+      "dPS": 0.25782055485202915,
+      "dPS_IG": 1.8728557034462885,
+      "dPS_OG": 0.23216270920525037,
+      "AvgChiSq": 2.112871416129123,
+      "AvgConf": 0.5608339726525466
+     },
+     "max_abs_shap": 5.327273845672607
+    },
+    "soft_vote_kernel": {
+     "title": "soft-voting ensemble of RP / AP, KernelExplainer, P(True) (plan OQ30 (ii))",
+     "n_explained": 150,
+     "base_value": 0.11421591753962258,
+     "run_ranking": [
+      "dPS_IG",
+      "AvgChiSq",
+      "AvgPS_OG",
+      "AvgPS_IG",
+      "Support",
+      "AvgPS",
+      "dPS",
+      "AvgConf",
+      "dPS_OG",
+      "IsMajority"
+     ],
+     "mean_abs_shap": {
+      "IsMajority": 0.0023488218488166416,
+      "Support": 0.025385084975842465,
+      "AvgPS": 0.013267578247629476,
+      "AvgPS_IG": 0.042547693863240865,
+      "AvgPS_OG": 0.04516034608543547,
+      "dPS": 0.012316205165181974,
+      "dPS_IG": 0.09376704961293933,
+      "dPS_OG": 0.0038197125720455727,
+      "AvgChiSq": 0.08815764650084681,
+      "AvgConf": 0.010420701841696845
+     },
+     "max_abs_shap": 0.5682804393673154
+    }
+   }
+  }
+ },
+ "minutes": 4.796045935153961,
+ "note": "SYNTHETIC stand-in: END-TO-END SMOKE RUN. Plan row B10 puts the acceptance on real data only; no agreement with the thesis's rank order is computed or claimed."
+}

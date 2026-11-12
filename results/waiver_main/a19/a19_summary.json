@@ -1,0 +1,796 @@
+{
+ "step": "A19 SHAP for CDMCR (TH Figs 5.4-5.7, A.1; T30)",
+ "header": {
+  "written": "2026-11-12T10:15:15Z",
+  "argv": [
+   "scripts/run_a19_shap.py",
+   "--build",
+   "waiver_main",
+   "--n-jobs",
+   "3",
+   "--runs-root",
+   "runs"
+  ],
+  "data": {
+   "kind": "real",
+   "build": "waiver_main",
+   "build_dir": "build/worldA/waiver_main",
+   "gate": {
+    "build": "waiver_main",
+    "cases_sha256": "c237695153557e02862adf8f823098f849831a98ed6e737595b9d6950794635c",
+    "status": "waived",
+    "role": "primary",
+    "date": "2026-11-11",
+    "decided_by": "project owner",
+    "reference": "docs/RULE_BASELINE_CHECK.md",
+    "amendment": "AM17"
+   },
+   "manifest_status": "hypothesis \u2014 used with the rule-baseline differences documented (NBA and NFL rule-baseline counts differ from the thesis-reported counts)",
+   "manifest_created": "2026-11-12T09:53:44+00:00",
+   "limit": null,
+   "n_cases": 1209,
+   "instance_seed": 0,
+   "instance_log": {
+    "amax_tie": 21,
+    "amin_tie": 21,
+    "hac_tie": 7,
+    "single_subset": 0,
+    "cases_with_imputed_CAmin": 169,
+    "cases_with_imputed_CAmax": 0,
+    "cases_with_subset_amax_ties": 62,
+    "cases_with_subset_amin_ties": 62,
+    "nan_features": {},
+    "non_binary_cases": 0
+   },
+   "rule_baselines": {
+    "SP": {
+     "recomputed": 869,
+     "n": 1209,
+     "rate": 0.7187758478081059,
+     "thesis": 864,
+     "difference": 5
+    },
+    "MR": {
+     "recomputed": 838,
+     "n": 1209,
+     "rate": 0.6931348221670802,
+     "thesis": 831,
+     "difference": 7
+    },
+    "WC": {
+     "recomputed": 831,
+     "n": 1209,
+     "rate": 0.6873449131513648,
+     "thesis": 830,
+     "difference": 1
+    },
+    "HAC": {
+     "recomputed": 767,
+     "n": 1209,
+     "rate": 0.6344086021505376,
+     "thesis": 774,
+     "difference": -7
+    },
+    "DA": {
+     "recomputed": 368,
+     "n": 1209,
+     "rate": 0.304383788254756,
+     "thesis": 372,
+     "difference": -4
+    }
+   },
+   "rule_baselines_by_domain": {
+    "all": {
+     "SP": {
+      "recomputed": 869,
+      "n": 1209,
+      "thesis": 864,
+      "thesis_n": 1209
+     },
+     "MR": {
+      "recomputed": 838,
+      "n": 1209,
+      "thesis": 831,
+      "thesis_n": 1209
+     },
+     "WC": {
+      "recomputed": 831,
+      "n": 1209,
+      "thesis": 830,
+      "thesis_n": 1209
+     },
+     "HAC": {
+      "recomputed": 767,
+      "n": 1209,
+      "thesis": 774,
+      "thesis_n": 1209
+     },
+     "DA": {
+      "recomputed": 368,
+      "n": 1209,
+      "thesis": 372,
+      "thesis_n": 1209
+     }
+    },
+    "General": {
+     "SP": {
+      "recomputed": 413,
+      "n": 500,
+      "thesis": 413,
+      "thesis_n": 500
+     },
+     "MR": {
+      "recomputed": 385,
+      "n": 500,
+      "thesis": 385,
+      "thesis_n": 500
+     },
+     "WC": {
+      "recomputed": 380,
+      "n": 500,
+      "thesis": 380,
+      "thesis_n": 500
+     },
+     "HAC": {
+      "recomputed": 338,
+      "n": 500,
+      "thesis": 338,
+      "thesis_n": 500
+     },
+     "DA": {
+      "recomputed": 111,
+      "n": 500,
+      "thesis": 108,
+      "thesis_n": 500
+     }
+    },
+    "NBA": {
+     "SP": {
+      "recomputed": 260,
+      "n": 393,
+      "thesis": 258,
+      "thesis_n": 393
+     },
+     "MR": {
+      "recomputed": 256,
+      "n": 393,
+      "thesis": 252,
+      "thesis_n": 393
+     },
+     "WC": {
+      "recomputed": 252,
+      "n": 393,
+      "thesis": 253,
+      "thesis_n": 393
+     },
+     "HAC": {
+      "recomputed": 230,
+      "n": 393,
+      "thesis": 237,
+      "thesis_n": 393
+     },
+     "DA": {
+      "recomputed": 137,
+      "n": 393,
+      "thesis": 142,
+      "thesis_n": 393
+     }
+    },
+    "NFL": {
+     "SP": {
+      "recomputed": 112,
+      "n": 212,
+      "thesis": 109,
+      "thesis_n": 212
+     },
+     "MR": {
+      "recomputed": 114,
+      "n": 212,
+      "thesis": 111,
+      "thesis_n": 212
+     },
+     "WC": {
+      "recomputed": 117,
+      "n": 212,
+      "thesis": 114,
+      "thesis_n": 212
+     },
+     "HAC": {
+      "recomputed": 131,
+      "n": 212,
+      "thesis": 131,
+      "thesis_n": 212
+     },
+     "DA": {
+      "recomputed": 99,
+      "n": 212,
+      "thesis": 101,
+      "thesis_n": 212
+     }
+    },
+    "Politics": {
+     "SP": {
+      "recomputed": 84,
+      "n": 104,
+      "thesis": 84,
+      "thesis_n": 104
+     },
+     "MR": {
+      "recomputed": 83,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "WC": {
+      "recomputed": 82,
+      "n": 104,
+      "thesis": 83,
+      "thesis_n": 104
+     },
+     "HAC": {
+      "recomputed": 68,
+      "n": 104,
+      "thesis": 68,
+      "thesis_n": 104
+     },
+     "DA": {
+      "recomputed": 21,
+      "n": 104,
+      "thesis": 21,
+      "thesis_n": 104
+     }
+    }
+   }
+  },
+  "hyper": {
+   "rf_n_estimators": 100,
+   "knn_k": 5,
+   "lr_solver": "lbfgs",
+   "lr_max_iter": 10000,
+   "scaling": "none",
+   "seed": 0
+  },
+  "settings": {
+   "lr_max_iter": 10000,
+   "technique_tie_rule": "first_in_table_order",
+   "classifier_seed": 0,
+   "note": "AM18 settings (LR max_iter 10000 + convergence count; technique tie = first in table order; RF seed 0 primary): defaults of this implementation (docs/RECONSTRUCTION_PLAN.md, appendix)"
+  },
+  "versions": {
+   "numpy": "2.5.3",
+   "scikit-learn": "1.9.1",
+   "scikit-multilearn": "0.2.0"
+  },
+  "code_fingerprint": "ab87dda16049de3bd8f0b41c6dcc321be46c897dd0c2efb2ce7b6533953eb652",
+  "n_jobs": 3
+ },
+ "oq30": {
+  "faithful": "xgboost_per_label_TreeExplainer_log_odds_beeswarm_max_display_20",
+  "comparison": "KernelExplainer_on_actual_model",
+  "trained_on": "all_data"
+ },
+ "models": [
+  "xgboost_tree",
+  "rf_kernel"
+ ],
+ "labels": [
+  "MR",
+  "HAC",
+  "WC",
+  "SP",
+  "DA"
+ ],
+ "kernel": {
+  "background_n": 50,
+  "nsamples": "auto"
+ },
+ "seconds": {
+  "xgboost_tree": 9.755444526672363,
+  "rf_kernel": 1392.4714543819427
+ },
+ "comparison": {
+  "xgboost_tree": {
+   "MR": {
+    "label": "MR",
+    "figure": "TH Fig. 5.4 (p.80)",
+    "top1_run": "D_Smax_Smin",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 24,
+    "spearman_all": 0.40726996855648484,
+    "spearman_listed": 0.01754385964912281,
+    "top5_overlap": 3,
+    "top10_overlap": 5,
+    "top19_overlap": 16
+   },
+   "HAC": {
+    "label": "HAC",
+    "figure": "TH Fig. 5.7 (p.81)",
+    "top1_run": "B_Amax_MaxCa",
+    "top1_thesis": "CAmin",
+    "top1_equal": false,
+    "rank_of_thesis_top": 7,
+    "spearman_all": 0.660847321795906,
+    "spearman_listed": 0.5052631578947369,
+    "top5_overlap": 2,
+    "top10_overlap": 8,
+    "top19_overlap": 16
+   },
+   "WC": {
+    "label": "WC",
+    "figure": "TH Fig. A.1 (p.113)",
+    "top1_run": "D_Smax_Smin",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 24,
+    "spearman_all": 0.4650979747220602,
+    "spearman_listed": 0.04035087719298246,
+    "top5_overlap": 2,
+    "top10_overlap": 5,
+    "top19_overlap": 15
+   },
+   "SP": {
+    "label": "SP",
+    "figure": "TH Fig. 5.6 (p.81)",
+    "top1_run": "AvgC",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 24,
+    "spearman_all": 0.36335779275160957,
+    "spearman_listed": -0.27543859649122804,
+    "top5_overlap": 1,
+    "top10_overlap": 5,
+    "top19_overlap": 17
+   },
+   "DA": {
+    "label": "DA",
+    "figure": "TH Fig. 5.5 (p.80)",
+    "top1_run": "AvgC",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 24,
+    "spearman_all": 0.36119310802883403,
+    "spearman_listed": 0.18947368421052632,
+    "top5_overlap": 2,
+    "top10_overlap": 4,
+    "top19_overlap": 16
+   }
+  },
+  "rf_kernel": {
+   "MR": {
+    "label": "MR",
+    "figure": "TH Fig. 5.4 (p.80)",
+    "top1_run": "D_Smax_Smin",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 26,
+    "spearman_all": -0.06463130100858416,
+    "spearman_listed": -0.16315789473684209,
+    "top5_overlap": 1,
+    "top10_overlap": 3,
+    "top19_overlap": 14
+   },
+   "HAC": {
+    "label": "HAC",
+    "figure": "TH Fig. 5.7 (p.81)",
+    "top1_run": "B_Amax_MaxCa",
+    "top1_thesis": "CAmin",
+    "top1_equal": false,
+    "rank_of_thesis_top": 8,
+    "spearman_all": 0.07359928057436858,
+    "spearman_listed": 0.4736842105263158,
+    "top5_overlap": 2,
+    "top10_overlap": 5,
+    "top19_overlap": 12
+   },
+   "WC": {
+    "label": "WC",
+    "figure": "TH Fig. A.1 (p.113)",
+    "top1_run": "AvgC",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 26,
+    "spearman_all": -0.03865508433527762,
+    "spearman_listed": 0.1842105263157895,
+    "top5_overlap": 1,
+    "top10_overlap": 3,
+    "top19_overlap": 14
+   },
+   "SP": {
+    "label": "SP",
+    "figure": "TH Fig. 5.6 (p.81)",
+    "top1_run": "AvgC",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 27,
+    "spearman_all": -0.1227685478488417,
+    "spearman_listed": -0.08070175438596491,
+    "top5_overlap": 0,
+    "top10_overlap": 5,
+    "top19_overlap": 13
+   },
+   "DA": {
+    "label": "DA",
+    "figure": "TH Fig. 5.5 (p.80)",
+    "top1_run": "D_Smax_Smin",
+    "top1_thesis": "SG_B_Amax",
+    "top1_equal": false,
+    "rank_of_thesis_top": 26,
+    "spearman_all": -0.04236597243146426,
+    "spearman_listed": 0.13333333333333333,
+    "top5_overlap": 1,
+    "top10_overlap": 4,
+    "top19_overlap": 14
+   }
+  }
+ },
+ "directions": {
+  "xgboost_tree": {
+   "MR": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": -1,
+     "run": -0.28747627096266404,
+     "agrees": true
+    },
+    {
+     "feature": "AvgPSV",
+     "thesis": 1,
+     "run": 0.6470162323229728,
+     "agrees": true
+    },
+    {
+     "feature": "D_Smax_Smin",
+     "thesis": 1,
+     "run": 0.9151610434862912,
+     "agrees": true
+    },
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.6730238287751289,
+     "agrees": true
+    }
+   ],
+   "HAC": [
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.6409283327910924,
+     "agrees": true
+    },
+    {
+     "feature": "B_Amax_MaxCa",
+     "thesis": 1,
+     "run": 0.7340162063352482,
+     "agrees": true
+    }
+   ],
+   "WC": [],
+   "SP": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": -1,
+     "run": 0.026421292789208243,
+     "agrees": false
+    },
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.35374376360869164,
+     "agrees": true
+    },
+    {
+     "feature": "N",
+     "thesis": -1,
+     "run": -0.4739068401849312,
+     "agrees": true
+    }
+   ],
+   "DA": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": 1,
+     "run": 0.1891018944960924,
+     "agrees": true
+    },
+    {
+     "feature": "D_Smax_Smin",
+     "thesis": -1,
+     "run": -0.8854600828874034,
+     "agrees": true
+    },
+    {
+     "feature": "CAmin",
+     "thesis": 1,
+     "run": 0.3855352698806523,
+     "agrees": true
+    }
+   ]
+  },
+  "rf_kernel": {
+   "MR": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": -1,
+     "run": 0.10837452448535063,
+     "agrees": false
+    },
+    {
+     "feature": "AvgPSV",
+     "thesis": 1,
+     "run": 0.6912220439732699,
+     "agrees": true
+    },
+    {
+     "feature": "D_Smax_Smin",
+     "thesis": 1,
+     "run": 0.7660574079698634,
+     "agrees": true
+    },
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.07173711980737317,
+     "agrees": true
+    }
+   ],
+   "HAC": [
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.6143734965352485,
+     "agrees": true
+    },
+    {
+     "feature": "B_Amax_MaxCa",
+     "thesis": 1,
+     "run": 0.6913540769332314,
+     "agrees": true
+    }
+   ],
+   "WC": [],
+   "SP": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": -1,
+     "run": 0.14790517187192964,
+     "agrees": false
+    },
+    {
+     "feature": "CAmin",
+     "thesis": -1,
+     "run": -0.13204080099474144,
+     "agrees": true
+    },
+    {
+     "feature": "N",
+     "thesis": -1,
+     "run": -0.26021423944486916,
+     "agrees": true
+    }
+   ],
+   "DA": [
+    {
+     "feature": "SG_B_Amax",
+     "thesis": 1,
+     "run": -0.1616904126729698,
+     "agrees": false
+    },
+    {
+     "feature": "D_Smax_Smin",
+     "thesis": -1,
+     "run": -0.7755569210457741,
+     "agrees": true
+    },
+    {
+     "feature": "CAmin",
+     "thesis": 1,
+     "run": 0.004230200292757221,
+     "agrees": true
+    }
+   ]
+  }
+ },
+ "mirror_MR_DA": {
+  "xgboost_tree": {
+   "spearman_importance": 0.9389312977099236,
+   "shap_correlation": -0.8821250504291909,
+   "top": 10,
+   "top_defined": 10,
+   "opposite": 10
+  },
+  "rf_kernel": {
+   "spearman_importance": 0.9371184371184371,
+   "shap_correlation": -0.8702760316130908,
+   "top": 10,
+   "top_defined": 10,
+   "opposite": 10
+  }
+ },
+ "acceptance": {
+  "xgboost_tree": {
+   "top_feature": {
+    "MR": {
+     "expected": "SG_B_Amax",
+     "run": "D_Smax_Smin",
+     "rank_of_expected": 24,
+     "met": false
+    },
+    "DA": {
+     "expected": "SG_B_Amax",
+     "run": "AvgC",
+     "rank_of_expected": 24,
+     "met": false
+    },
+    "SP": {
+     "expected": "SG_B_Amax",
+     "run": "AvgC",
+     "rank_of_expected": 24,
+     "met": false
+    },
+    "HAC": {
+     "expected": "CAmin",
+     "run": "B_Amax_MaxCa",
+     "rank_of_expected": 7,
+     "met": false
+    }
+   },
+   "mirror_MR_DA": {
+    "spearman_importance": 0.9389312977099236,
+    "shap_correlation": -0.8821250504291909,
+    "top": 10,
+    "top_defined": 10,
+    "opposite": 10,
+    "met": true
+   },
+   "all_met": false
+  },
+  "rf_kernel": {
+   "top_feature": {
+    "MR": {
+     "expected": "SG_B_Amax",
+     "run": "D_Smax_Smin",
+     "rank_of_expected": 26,
+     "met": false
+    },
+    "DA": {
+     "expected": "SG_B_Amax",
+     "run": "D_Smax_Smin",
+     "rank_of_expected": 26,
+     "met": false
+    },
+    "SP": {
+     "expected": "SG_B_Amax",
+     "run": "AvgC",
+     "rank_of_expected": 27,
+     "met": false
+    },
+    "HAC": {
+     "expected": "CAmin",
+     "run": "B_Amax_MaxCa",
+     "rank_of_expected": 8,
+     "met": false
+    }
+   },
+   "mirror_MR_DA": {
+    "spearman_importance": 0.9371184371184371,
+    "shap_correlation": -0.8702760316130908,
+    "top": 10,
+    "top_defined": 10,
+    "opposite": 10,
+    "met": true
+   },
+   "all_met": false
+  }
+ },
+ "thesis_ranking": {
+  "MR": [
+   "SG_B_Amax",
+   "SG_D_MaxES_MinES",
+   "MaxPSa",
+   "AvgPSV",
+   "D_Smax_Smin",
+   "CAmin",
+   "SG_VarSAmax",
+   "N",
+   "SG_VarCAmin",
+   "SG_VarCAmax",
+   "D_MaxC_AvgC",
+   "VarC",
+   "P_lowPSv_highC",
+   "SG_D_MaxAvgC_MinAvgC",
+   "CAmax",
+   "SG_D_MaxVarS_MinVarS",
+   "AvgC",
+   "SG_AvgCAmax",
+   "SG_AvgCAmin"
+  ],
+  "DA": [
+   "SG_B_Amax",
+   "SG_D_MaxES_MinES",
+   "MaxPSa",
+   "D_Smax_Smin",
+   "CAmin",
+   "AvgPSV",
+   "SG_VarSAmax",
+   "D_MaxC_AvgC",
+   "N",
+   "SG_VarCAmax",
+   "SG_D_MaxAvgC_MinAvgC",
+   "VarC",
+   "SG_VarCAmin",
+   "P_lowPSv_highC",
+   "SG_D_MaxVarS_MinVarS",
+   "CAmax",
+   "SG_AvgCAmax",
+   "SG_AvgCAmin",
+   "SG_D_MaxVarC_MinVarC"
+  ],
+  "SP": [
+   "SG_B_Amax",
+   "D_Smax_Smin",
+   "SG_D_MaxES_MinES",
+   "MaxPSa",
+   "SG_VarSAmax",
+   "N",
+   "D_MaxC_AvgC",
+   "CAmax",
+   "AvgPSV",
+   "CAmin",
+   "VarC",
+   "SG_VarCAmin",
+   "SG_VarCAmax",
+   "SG_D_MaxAvgC_MinAvgC",
+   "SG_D_MaxVarS_MinVarS",
+   "P_lowPSv_highC",
+   "AvgC",
+   "SG_D_MaxVarC_MinVarC",
+   "P_lowC_highPSv"
+  ],
+  "HAC": [
+   "CAmin",
+   "B_Amax_MaxCa",
+   "AvgPSV",
+   "SG_B_Amax",
+   "SG_D_MaxES_MinES",
+   "D_Smax_Smin",
+   "SG_AvgCAmax",
+   "MaxPSa",
+   "N",
+   "SG_VarCAmin",
+   "VarC",
+   "SG_VarSAmax",
+   "SG_AvgCAmin",
+   "SG_D_MaxAvgC_MinAvgC",
+   "SG_VarCAmax",
+   "MinC",
+   "P_lowPSv_highC",
+   "SG_D_MaxVarC_MinVarC",
+   "P_lowC_highPSv"
+  ],
+  "WC": [
+   "SG_B_Amax",
+   "SG_D_MaxES_MinES",
+   "CAmin",
+   "MaxPSa",
+   "D_Smax_Smin",
+   "AvgPSV",
+   "SG_VarSAmax",
+   "N",
+   "D_MaxC_AvgC",
+   "SG_VarCAmin",
+   "SG_AvgCAmax",
+   "SG_VarCAmax",
+   "SG_AvgCAmin",
+   "SG_D_MaxVarC_MinVarC",
+   "VarC",
+   "AvgC",
+   "SG_D_MaxAvgC_MinAvgC",
+   "P_lowPSv_highC",
+   "SG_D_MaxVarS_MinVarS"
+  ]
+ },
+ "thesis_columns_are_comparable": true,
+ "complete": true
+}

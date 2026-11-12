@@ -1,0 +1,17 @@
+DAP nested CV (10-fold x inner LOO)
+  successes 853/1209 = 0.706   thesis 937/1209 = 0.775   difference -84
+    General    420/500  = 0.840
+    NBA        251/393  = 0.639
+    NFL        118/212  = 0.557
+    Politics    64/104  = 0.615
+  versus rule: (approach only, rule only) correct, thesis pair, McNemar p
+    SP   (51, 67)   thesis -   p = 0.167
+    MR   (106, 91)   thesis -   p = 0.319
+    WC   (118, 96)   thesis -   p = 0.151
+    HAC  (222, 136)   thesis -   p = 7.04e-06
+    DA   (752, 267)   thesis -   p = 6.31e-52
+  argmax / 0.5 ties: {'half_rows': 3}; fits not converged: 0; NaN in outputs: 0
+  selected by fold: ['LR', 'LR', 'LR', 'LR', 'LR', 'LR', 'LR', 'LR', 'LR', 'RF']
+  tied folds: []
+  successes over every tie resolution: 853..853
+  fits not converged: {'KNN': 0, 'LR': 0, 'RF': 0, 'test_refits': 0}
